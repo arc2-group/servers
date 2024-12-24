@@ -74,6 +74,15 @@
         #};
       };
 
+      nixConfig = {
+        extra-substituters = [
+          "https://arc2-group.cachix.org"
+        ];
+        extra-trusted-public-keys = [
+          "arc2-group.cachix.org-1:SfZ4Amg/VroYhmCRNX0mQcFEWGCFWvn31s3gwEaU/2U="
+        ];
+      };
+
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
