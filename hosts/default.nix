@@ -103,4 +103,7 @@
     persistent = true;
     flake = "github:arc2-group/servers#${hostname}";
   };
+
+  # Enable QEMU Guest agent (for VMs)
+  services.qemuGuest.enable = true;
 }
