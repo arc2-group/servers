@@ -1,4 +1,7 @@
-{ pkgs, config, ... }:
+{ pkgs, config, hostname, ... }:
+let
+  adminpass = "${hostname}-admin-pass";
+in
 {
   services.nextcloud = {
     enable = true;
@@ -31,8 +34,10 @@
     config = {
       dbtype = "pgsql";
       adminuser = "admin";
-      adminpassFile = "/var/nc_adminpass";
+      adminpassFile = config.age.secrets.${adminpass}.path;
     };
     phpOptions."opcache.interned_strings_buffer" = "16";
   };
+
+  age.secrets.${adminpass} = { file = ./admin-pass.age; };
 }
