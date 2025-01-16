@@ -44,5 +44,8 @@ in
   "modules/services/monitoring/grafana/admin-password.age".publicKeys = admins ++ [
     s.vm-monitoring
   ];
+
+  "hosts/vm-nextcloud/ssh_host_ed25519_key.age".publicKeys = admins ++ [ s.vm-public-nextcloud ];
+  "modules/services/nextcloud/admin-pass.age".publicKeys = admins ++ [ s.vm-public-nextcloud ];
 }
 // secrets
