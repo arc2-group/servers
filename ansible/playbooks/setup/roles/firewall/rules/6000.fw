@@ -1,0 +1,9 @@
+[OPTIONS]
+
+policy_in: DROP
+enable: 1
+log_level_in: nolog
+
+[RULES]
+
+GROUP gp-vm

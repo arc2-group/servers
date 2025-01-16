@@ -1,0 +1,34 @@
+[OPTIONS]
+
+enable: 1
+policy_in: DROP
+
+[ALIASES]
+
+vm-admin fd5e:934f:acab:1::6001
+
+[IPSET cluster]
+
+172.25.71.0/24 # Zerotier IPv4
+fd27:2f5e:ae16:336f:1099::/80 # Zerotier RFC4193
+
+[IPSET local]
+
+192.168.0.0/16
+172.19.76.1/32
+
+[RULES]
+
+IN ACCEPT -source +dc/cluster -p udp -dport 4789 -log nolog # PVE VXLAN underlay
+IN SSH(ACCEPT) -source +dc/cluster -log nolog # PVE cluster SSH
+IN SSH(ACCEPT) -source +dc/local -log info # local SSH
+IN SSH(DROP) -log notice # Drop other SSH
+IN ACCEPT -source +dc/cluster -p icmp -log nolog # Host Ping
+IN ACCEPT -p tcp -dport 8006 -log nolog # PVE Web GUI
+
+[group gp-vm]
+
+IN ACCEPT -source +sdn/PApp-all -p ipv6-icmp -log nolog # Ping
+IN SSH(ACCEPT) -source dc/vm-admin -log nolog # Accept SSH from vm-admin
+IN SSH(DROP) -log notice # Drop other SSH
+IN DROP -log nolog # Drop other incoming

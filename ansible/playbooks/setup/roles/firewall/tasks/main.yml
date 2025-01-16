@@ -7,7 +7,10 @@
 
 - name: Configure cluster firewall
   copy:
-    src: ../vars/cluster.fw
-    dest: /etc/pve/firewall/cluster.fw
-    backup: true
+    src: "{{ item }}"
+    dest: /etc/pve/firewall/
     group: www-data
+    unsafe_writes: true
+  ignore_errors: true
+  with_fileglob:
+    - ../rules/*
