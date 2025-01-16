@@ -4,8 +4,8 @@
     enable = true;
     hostName = "nc.example.com"; # Enter your domain here
     package = pkgs.nextcloud30; # Need to manually increment with every major upgrade.
-    home = /data;
-    datadir = /var/lib/nexctcloud;
+    home = "/data";
+    datadir = "/var/lib/nexctcloud";
     database.createLocally = true; # Let NixOS install and configure the database automatically.
     configureRedis = true; # Let NixOS install and configure Redis caching automatically.
     maxUploadSize = "16G";
