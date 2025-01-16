@@ -14,7 +14,7 @@
     extraApps = with config.services.nextcloud.package.packages.apps; {
       # List of already packaged apps:
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-      inherit calendar forms polls richdocuments files_markdown files_texteditor mail;
+      inherit calendar forms polls richdocuments mail;
       ## Custom app example
       #socialsharing_telegram = pkgs.fetchNextcloudApp rec {
       #  url =
