@@ -24,7 +24,7 @@ IN SSH(ACCEPT) -source +dc/cluster -log nolog # PVE cluster SSH
 IN SSH(ACCEPT) -source +dc/local -log info # local SSH
 IN SSH(DROP) -log notice # Drop other SSH
 IN ACCEPT -source +dc/cluster -p icmp -log nolog # Host Ping
-IN ACCEPT -p tcp -dport 8006 -log nolog # PVE Web GUI
+IN ACCEPT -source +dc/local -p tcp -dport 8006 -log info # PVE Web GUI
 
 [group gp-vm]
 
