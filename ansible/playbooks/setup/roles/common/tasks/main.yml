@@ -45,3 +45,12 @@
 - name: Install SSHGuard
   apt:
     package: sshguard
+
+- name: Add automatic upgrades to cron
+  cron:
+    name: upgrade
+    user: root
+    minute: 15
+    hour: 12
+    weekday: "2" # Wednesday
+    job: /usr/bin/apt-get update && /usr/bin/apt-get -y dist-upgrade
