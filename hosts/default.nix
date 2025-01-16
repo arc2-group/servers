@@ -1,14 +1,11 @@
-{ config
-, hostname
+{ hostname
 , inputs
 , lib
 , modulesPath
-, outputs
 , pkgs
 , platform
 , stateVersion
 , username
-, isISO
 , isInstall
 , ...
 }:
