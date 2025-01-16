@@ -30,8 +30,8 @@
     };
     config = {
       dbtype = "pgsql";
-      # adminuser = "admin";
-      # adminpassFile = "/var/nc_admin_pass";
+      adminuser = "admin";
+      adminpassFile = "/var/nc_admin_pass";
     };
     phpOptions."opcache.interned_strings_buffer" = "16";
   };
