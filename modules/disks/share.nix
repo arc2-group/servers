@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
   fileSystems."/data" = {
     device = "data";

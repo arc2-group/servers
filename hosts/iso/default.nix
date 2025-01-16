@@ -1,8 +1,4 @@
-{ inputs
-, config
-, pkgs
-, lib
-, modulesPath
+{ modulesPath
 , ...
 }:
 
@@ -11,4 +7,3 @@
     (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
   ];
 }
-
