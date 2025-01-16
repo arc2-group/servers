@@ -41,3 +41,7 @@
     validate: sshd -t -f %s
   notify:
     - restart sshd
+
+- name: Install SSHGuard
+  apt:
+    package: sshguard
