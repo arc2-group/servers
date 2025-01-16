@@ -57,6 +57,10 @@
           hostname = "iso";
           username = vmUsername;
         };
+        vm-nextcloud = helper.mkNixos {
+          hostname = "vm-nextcloud";
+          username = vmUsername;
+        };
       };
 
       deploy.nodes = {
@@ -76,6 +80,12 @@
         vm-public-media = {
           hostname = "fd5e:934f:acab:ffff::6002";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-media;
+          profiles.system.user = "root";
+          profiles.system.sshUser = vmUsername;
+        };
+        vm-nextcloud = {
+          hostname = "fd5e:934f:acab:ffff::6002";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-nextcloud;
           profiles.system.user = "root";
           profiles.system.sshUser = vmUsername;
         };
