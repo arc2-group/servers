@@ -16,4 +16,4 @@
 - name: Update APT package index & upgrade
   apt:
     update_cache: true
-    upgrade: true
+    upgrade: full
