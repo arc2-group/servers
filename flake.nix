@@ -35,6 +35,10 @@
           hostname = "vm-public-media";
           username = vmUsername;
         };
+        vm-public-conduwuit = helper.mkNixos {
+          hostname = "vm-public-conduwuit";
+          username = vmUsername;
+        };
         # Special configs
         vm-minimal = helper.mkNixos {
           hostname = "vm-minimal";
@@ -63,6 +67,12 @@
         vm-public-media = {
           hostname = "fd5e:934f:acab:ffff::6002";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-media;
+          profiles.system.user = "root";
+          profiles.system.sshUser = vmUsername;
+        };
+        vm-public-conduwuit = {
+          hostname = "fd5e:934f:acab:ffff::6005";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-conduwuit;
           profiles.system.user = "root";
           profiles.system.sshUser = vmUsername;
         };
