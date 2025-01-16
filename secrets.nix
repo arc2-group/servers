@@ -8,6 +8,7 @@ let
   vm-minimal = (builtins.readFile ./hosts/vm-minimal/ssh_host_ed25519_key.pub);
   vm-public-ingress = (builtins.readFile ./hosts/vm-public-ingress/ssh_host_ed25519_key.pub);
   vm-public-media = (builtins.readFile ./hosts/vm-public-media/ssh_host_ed25519_key.pub);
+  vm-nextcloud = (builtins.readFile ./hosts/vm-nextcloud/ssh_host_ed25519_key.pub);
   vm-public-matrix = (builtins.readFile ./hosts/vm-public-matrix/ssh_host_ed25519_key.pub);
 
   systems = [ vm-admin vm-minimal ];
@@ -22,8 +23,4 @@ in
   "hosts/vm-public-ingress/ssh_host_ed25519_key.age".publicKeys = [ vm-public-ingress ] ++ everyone;
 
   "hosts/vm-public-media/ssh_host_ed25519_key.age".publicKeys = [ vm-public-media ] ++ everyone;
-
-  "hosts/vm-public-matrix/ssh_host_ed25519_key.age".publicKeys = [ vm-public-matrix ] ++ everyone;
-  "modules/services/conduwuit/registration-token.age".publicKeys = [ vm-public-matrix ] ++ everyone;
-
 }
