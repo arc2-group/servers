@@ -84,7 +84,7 @@
           profiles.system.sshUser = vmUsername;
         };
         vm-nextcloud = {
-          hostname = "fd5e:934f:acab:ffff::6002";
+          hostname = "fd5e:934f:acab:ffff::6004";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-nextcloud;
           profiles.system.user = "root";
           profiles.system.sshUser = vmUsername;
