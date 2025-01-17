@@ -3,7 +3,7 @@ let
   registration-token = "${hostname}-registration-token";
 in
 {
-  conduwuit = {
+  services.conduwuit = {
     enable = true;
     package = pkgs.conduwuit;
 
