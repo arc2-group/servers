@@ -1,7 +1,7 @@
-{ ... }:
+args@{ ... }:
 {
   imports = [
     ../../modules/services/nixarr
-    ../../modules/disks/share.nix
+    (import ../../modules/disks/share.nix (args // { mountpoint = "/data"; }))
   ];
 }

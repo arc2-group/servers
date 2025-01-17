@@ -1,4 +1,8 @@
-{ inputs, ... }:
+{ inputs
+, mountpoint ? "/data"
+, device ? "sdb"
+, ...
+}:
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -6,9 +10,9 @@
 
   disko.devices = {
     disk = {
-      data = {
+      ${device} = {
         type = "disk";
-        device = "/dev/sdb";
+        device = "/dev/${device}";
         content = {
           type = "gpt";
           partitions = {
@@ -17,7 +21,7 @@
               content = {
                 type = "filesystem";
                 format = "ext4";
-                mountpoint = "/data";
+                mountpoint = "${mountpoint}";
               };
             };
           };

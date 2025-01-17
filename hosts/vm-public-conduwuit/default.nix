@@ -1,7 +1,7 @@
-{ ... }:
+args@{ ... }:
 {
   imports = [
     ../../modules/services/conduwuit
-    ../../modules/disks/share.nix
+    (import ../../modules/disks/data.nix (args // { mountpoint = "/var/lib/conduwuit"; }))
   ];
 }
