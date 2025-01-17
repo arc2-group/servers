@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
-    conduwuit.url = "github:NixOS/nixpkgs/nixos-unstable/nixos/modules/services/matrix/conduwuit.nix";
+    conduwuit.url = "github:NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/matrix/conduwuit.nix";
     conduwuit.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
