@@ -3,7 +3,8 @@ let
   registration-token = "${hostname}-registration-token";
 in
 {
-  services.conduwuit = {
+  imports = [ <nixos-unstable/nixos/modules/services/matrix/conduwuit.nix> ];
+  conduwuit = {
     enable = true;
     package = pkgs.conduwuit;
 
