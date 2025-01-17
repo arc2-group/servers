@@ -6,6 +6,7 @@ policy_in: DROP
 [ALIASES]
 
 vm-admin fd5e:934f:acab:1::6001
+vm-public-ingress fd5e:934f:acab:1::6003
 
 [IPSET cluster]
 
