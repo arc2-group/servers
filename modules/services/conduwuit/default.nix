@@ -1,15 +1,15 @@
-{ pkgs, config, hostname, inputs, ... }:
+{ pkgs, config, hostname, inputs, platform, ... }:
 let
   registration-token = "${hostname}-registration-token";
 in
 {
-  # Use conduwuit from unstable
+  # Use conduwuit service from unstable
   disabledModules = [ "services/matrix/conduwuit.nix" ];
-  imports = [ (inputs.unstable + "/nixos/modules/services/matrix/conduwuit.nix") ];
+  imports = [ (inputs.nixpkgs_unstable + "/nixos/modules/services/matrix/conduwuit.nix") ];
 
   services.conduwuit = {
     enable = true;
-    package = pkgs.conduwuit;
+    package = inputs.conduwuit.packages.${platform}.default;
 
     settings.global = {
       server_name = "example.com";
@@ -23,5 +23,7 @@ in
       registration_token_file = config.age.secrets.${registration-token}.path;
     };
   };
-  age.secrets.${registration-token} = { file = ./registration-token.age; };
+  age.secrets.${registration-token} = {
+    file = ./registration-token.age;
+  };
 }

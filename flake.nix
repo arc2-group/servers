@@ -1,22 +1,29 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs_latest.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs_unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.nixpkgs.follows = "nixpkgs_latest";
 
     deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs_latest";
 
     disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    disko.inputs.nixpkgs.follows = "nixpkgs_latest";
 
     nixarr.url = "github:rasmus-kirk/nixarr";
-    nixarr.inputs.nixpkgs.follows = "nixpkgs";
+    nixarr.inputs.nixpkgs.follows = "nixpkgs_latest";
+
+    blank.url = "github:divnix/blank";
+
+    conduwuit.url = "github:girlbossceo/conduwuit";
+    conduwuit.inputs.attic.follows = "blank";
+    conduwuit.inputs.cachix.follows = "blank";
+    conduwuit.inputs.complement.follows = "blank";
+    conduwuit.inputs.flake-compat.follows = "blank";
   };
-  outputs = { self, nixpkgs, deploy-rs, ... }@inputs:
+  outputs = { self, nixpkgs_latest, nixpkgs_unstable, deploy-rs, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.11";

@@ -14,7 +14,7 @@
       isISO = builtins.substring 0 3 hostname == "iso";
       isInstall = !isISO;
     in
-    inputs.nixpkgs.lib.nixosSystem {
+    inputs.nixpkgs_latest.lib.nixosSystem {
       specialArgs = {
         inherit
           inputs
@@ -30,7 +30,7 @@
       modules = [ ../hosts ];
     };
 
-  forAllSystems = inputs.nixpkgs.lib.genAttrs [
+  forAllSystems = inputs.nixpkgs_latest.lib.genAttrs [
     "aarch64-linux"
     "x86_64-linux"
   ];
