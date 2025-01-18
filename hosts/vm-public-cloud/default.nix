@@ -1,7 +1,7 @@
-{ ... }:
+args@{ ... }:
 {
   imports = [
     ../../modules/services/nextcloud
-    ../../modules/disks/share.nix
+    (import ../../modules/disks/share.nix (args))
   ];
 }
