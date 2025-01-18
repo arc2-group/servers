@@ -25,5 +25,7 @@ in
   };
   age.secrets.${registration-token} = {
     file = ./registration-token.age;
+    owner = config.services.conduwuit.user;
+    group = config.services.conduwuit.group;
   };
 }
