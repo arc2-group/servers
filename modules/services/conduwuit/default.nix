@@ -12,7 +12,7 @@ in
     package = inputs.conduwuit.packages.${platform}.default;
 
     settings.global = {
-      server_name = "example.com";
+      server_name = "blazma.st";
       allow_registration = true;
       trusted_servers = [ "matrix.org" "envs.net" "tchncs.de" "the-apothecary.club" ];
       address = [ "::" ];
