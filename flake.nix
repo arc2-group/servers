@@ -48,6 +48,10 @@
           hostname = "vm-public-matrix";
           username = vmUsername;
         };
+        vm-public-video = helper.mkNixos {
+          hostname = "vm-public-video";
+          username = vmUsername
+        }
         # Special configs
         vm-minimal = helper.mkNixos {
           hostname = "vm-minimal";
