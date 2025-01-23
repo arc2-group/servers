@@ -22,6 +22,15 @@
     conduwuit.inputs.cachix.follows = "blank";
     conduwuit.inputs.complement.follows = "blank";
     conduwuit.inputs.flake-compat.follows = "blank";
+
+    peertube.url = "github:Chocobozzz/PeerTube";
+    peertube.inputs.nixpkgs.follows = "nixpkgs_latest";
+    
+    misskey.url = "github::misskey-dev/misskey";
+    misskey.inputs.nixpkgs.follows = "nixpkgs_latest";
+    
+    lemmy.url = "github::LemmyNet/lemmy";
+    lemmy.inputs.nixpkgs.follows = "nixpkgs_latest";
   };
   outputs = { self, nixpkgs_latest, nixpkgs_unstable, deploy-rs, ... }@inputs:
     let
@@ -48,8 +57,8 @@
           hostname = "vm-public-matrix";
           username = vmUsername;
         };
-        vm-public-video = helper.mkNixos {
-          hostname = "vm-public-video";
+        vm-public-social = helper.mkNixos {
+          hostname = "vm-public-social";
           username = vmUsername
         }
         # Special configs
@@ -86,6 +95,12 @@
         vm-public-matrix = {
           hostname = "fd5e:934f:acab:ffff::6005";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-matrix;
+          profiles.system.user = "root";
+          profiles.system.sshUser = vmUsername;
+        };
+        vm-public-social = {
+          hostname = "fd5e:934f:acab:ffff::6004";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-social;
           profiles.system.user = "root";
           profiles.system.sshUser = vmUsername;
         };
