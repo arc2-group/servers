@@ -5,14 +5,14 @@ in
 {
   services.nextcloud = {
     enable = true;
-    hostName = "nc.example.com"; # Enter your domain here
+    hostName = "cloud.blazma.st"; # Enter your domain here
     package = pkgs.nextcloud30; # Need to manually increment with every major upgrade.
     home = "/data";
-    datadir = "/var/lib/nexctcloud";
+    datadir = "/var/lib/nextcloud";
     database.createLocally = true; # Let NixOS install and configure the database automatically.
     configureRedis = true; # Let NixOS install and configure Redis caching automatically.
     maxUploadSize = "16G";
-    autoUpdateApps.enable = false;
+    autoUpdateApps.enable = true;
     extraAppsEnable = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
       # List of already packaged apps:
