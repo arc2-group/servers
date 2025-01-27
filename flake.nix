@@ -44,6 +44,10 @@
           hostname = "vm-public-media";
           username = vmUsername;
         };
+        vm-public-cloud = helper.mkNixos {
+          hostname = "vm-public-cloud";
+          username = vmUsername;
+        };
         vm-public-matrix = helper.mkNixos {
           hostname = "vm-public-matrix";
           username = vmUsername;
@@ -76,6 +80,12 @@
         vm-public-media = {
           hostname = "fd5e:934f:acab:ffff::6002";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-media;
+          profiles.system.user = "root";
+          profiles.system.sshUser = vmUsername;
+        };
+        vm-public-cloud = {
+          hostname = "fd5e:934f:acab:ffff::6004";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-cloud;
           profiles.system.user = "root";
           profiles.system.sshUser = vmUsername;
         };
