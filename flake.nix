@@ -22,6 +22,9 @@
     conduwuit.inputs.cachix.follows = "blank";
     conduwuit.inputs.complement.follows = "blank";
     conduwuit.inputs.flake-compat.follows = "blank";
+
+    nginx.url = "github:nginx/nginx";
+    nginx.inputs.nixpkgs.follows = "nixpkgs_latest";
   };
   outputs = { self, nixpkgs_latest, nixpkgs_unstable, deploy-rs, ... }@inputs:
     let
