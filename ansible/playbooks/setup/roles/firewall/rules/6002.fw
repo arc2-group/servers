@@ -7,3 +7,12 @@ log_level_in: nolog
 [RULES]
 
 GROUP gp-vm
+
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 18096 -log nolog # Jellyfin
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 19091 -log nolog # Transmission
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 6767 -log nolog # Bazaar
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8686 -log nolog # Lidarr
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 9696 -log nolog # Prowlarr
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 7878 -log nolog # Radarr
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8787 -log nolog # Readarr
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8989 -log nolog # Sonarr
