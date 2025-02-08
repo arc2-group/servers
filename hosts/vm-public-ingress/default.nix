@@ -1,2 +1,6 @@
 { ... }:
-{ }
+{
+  imports = [
+    ../../modules/services/nginx
+  ];
+}
