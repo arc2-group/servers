@@ -51,4 +51,7 @@
       Restart = "always";
     };
   };
+  networking.firewall = {
+    allowedTCPPorts = [ 18096 19091 ];
+  };
 }
