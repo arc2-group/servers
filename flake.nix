@@ -29,71 +29,38 @@
       stateVersion = "24.11";
       helper = import ./lib { inherit inputs outputs stateVersion; };
       vmUsername = "coil";
+
+      # Build list of configurations (each directory in ./hosts)
+      entries = builtins.readDir ./hosts;
+      configurations = builtins.filter (entry: entries.${entry} == "directory") (builtins.attrNames entries);
+
+      # Generate deploy-rs config
+      deployNodes = builtins.listToAttrs (map
+        (name: {
+          name = name;
+          value = {
+            hostname = name;
+            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
+            profiles.system.user = "root";
+            profiles.system.sshUser = vmUsername;
+          };
+        })
+        # Only deploy VMs (hosts that start with 'vm-')
+        (builtins.filter (name: builtins.substring 0 3 name == "vm-") configurations));
+
     in
     {
-      nixosConfigurations = {
-        vm-admin = helper.mkNixos {
-          hostname = "vm-admin";
-          username = vmUsername;
-        };
-        vm-public-ingress = helper.mkNixos {
-          hostname = "vm-public-ingress";
-          username = vmUsername;
-        };
-        vm-public-media = helper.mkNixos {
-          hostname = "vm-public-media";
-          username = vmUsername;
-        };
-        vm-public-matrix = helper.mkNixos {
-          hostname = "vm-public-matrix";
-          username = vmUsername;
-        };
-        # Special configs
-        vm-minimal = helper.mkNixos {
-          hostname = "vm-minimal";
-          username = vmUsername;
-        };
-        iso = helper.mkNixos {
-          hostname = "iso";
-          username = vmUsername;
-        };
-      };
+      nixosConfigurations = builtins.listToAttrs (map
+        (name: {
+          name = name;
+          value = helper.mkNixos {
+            hostname = name;
+            username = vmUsername;
+          };
+        })
+        configurations);
 
-      deploy.nodes = {
-        # TODO: use hostnames instead of hardcoded IPs
-        vm-admin = {
-          hostname = "fd5e:934f:acab:ffff::6001";
-          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-admin;
-          profiles.system.user = "root";
-          profiles.system.sshUser = vmUsername;
-        };
-        vm-public-ingress = {
-          hostname = "fd5e:934f:acab:ffff::6003";
-          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-ingress;
-          profiles.system.user = "root";
-          profiles.system.sshUser = vmUsername;
-        };
-        vm-public-media = {
-          hostname = "fd5e:934f:acab:ffff::6002";
-          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-media;
-          profiles.system.user = "root";
-          profiles.system.sshUser = vmUsername;
-        };
-        vm-public-matrix = {
-          hostname = "fd5e:934f:acab:ffff::6005";
-          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vm-public-matrix;
-          profiles.system.user = "root";
-          profiles.system.sshUser = vmUsername;
-        };
-
-        # Template VM
-        #vm-minimal = {
-        #  hostname = "fdc6:b53a:280e:095::2000";
-        #  profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos #self.nixosConfigurations.vm-admin;
-        #  profiles.system.user = "root";
-        #  profiles.system.sshUser = vmUsername;
-        #};
-      };
+      deploy.nodes = deployNodes;
 
       nixConfig = {
         extra-substituters = [
