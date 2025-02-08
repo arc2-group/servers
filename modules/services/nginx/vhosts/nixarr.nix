@@ -21,9 +21,9 @@
       };
     in
     {
-      "media.blazma.st" = proxy { port = 8096; verifyCert = false; }; # Jellyfin
+      "media.blazma.st" = proxy { port = 18096; verifyCert = false; }; # Jellyfin
 
-      "transmission.blazma.st" = proxy { port = 9091; };
+      "transmission.blazma.st" = proxy { port = 19091; };
 
       "bazarr.blazma.st" = proxy { port = 6767; };
       "lidarr.blazma.st" = proxy { port = 8686; };
