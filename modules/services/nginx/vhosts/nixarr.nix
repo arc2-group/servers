@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   services.nginx.virtualHosts =
     let
@@ -12,11 +12,11 @@
         "/" = {
           proxyPass = "http://vm-public-media:" + toString (port) + "/";
           extraConfig =
-            if verifyCert then ''
+            lib.mkIf verifyCert ''
               if ($ssl_client_verify != SUCCESS) {
                 return 403;
               }
-            '' else "";
+            '';
         };
       };
     in
@@ -25,7 +25,7 @@
 
       "transmission.blazma.st" = proxy { port = 9091; };
 
-      "bazarr.blazma.st" = proxy { port = 8686; };
+      "bazarr.blazma.st" = proxy { port = 6767; };
       "lidarr.blazma.st" = proxy { port = 8686; };
       "prowlarr.blazma.st" = proxy { port = 9696; };
       "radarr.blazma.st" = proxy { port = 7878; };
