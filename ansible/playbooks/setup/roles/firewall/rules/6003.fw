@@ -6,8 +6,8 @@ log_level_in: nolog
 
 [RULES]
 
-GROUP gp-vm
-
 IN ACCEPT -p tcp -dport 80 -log nolog # HTTP
 IN ACCEPT -p tcp -dport 443 -log nolog # HTTPS
 IN ACCEPT -p udp -dport 443 -log nolog # HTTPS (QUIC)
+
+GROUP gp-vm
