@@ -1,7 +1,8 @@
-{ inputs
-, mountpoint ? "/data"
-, device ? "sdb"
-, ...
+{
+  inputs,
+  mountpoint ? "/data",
+  device ? "sdb",
+  ...
 }:
 {
   imports = [

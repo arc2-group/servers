@@ -17,15 +17,21 @@
 
     blank.url = "github:divnix/blank";
 
-    conduwuit.url = "github:girlbossceo/conduwuit";
-    conduwuit.inputs.attic.follows = "blank";
-    conduwuit.inputs.cachix.follows = "blank";
-    conduwuit.inputs.complement.follows = "blank";
-    conduwuit.inputs.flake-compat.follows = "blank";
+    conduwuit = {
+      url = "github:girlbossceo/conduwuit";
+      inputs = {
+        attic.follows = "blank";
+        cachix.follows = "blank";
+        complement.follows = "blank";
+        flake-compat.follows = "blank";
+      };
+    };
 
-    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
-    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs_unstable";
-    pre-commit-hooks.inputs.flake-compat.follows = "blank";
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+      inputs.flake-compat.follows = "blank";
+    };
   };
   outputs =
     {
@@ -50,12 +56,14 @@
       deployNodes = builtins.listToAttrs (
         map
           (name: {
-            name = name;
+            inherit name;
             value = {
               hostname = name;
-              profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
-              profiles.system.user = "root";
-              profiles.system.sshUser = vmUsername;
+              profiles.system = {
+                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
+                system.user = "root";
+                system.sshUser = vmUsername;
+              };
             };
           })
           # Only deploy VMs (hosts that start with 'vm-')
@@ -91,7 +99,7 @@
     {
       nixosConfigurations = builtins.listToAttrs (
         map (name: {
-          name = name;
+          inherit name;
           value = helper.mkNixos {
             hostname = name;
             username = vmUsername;

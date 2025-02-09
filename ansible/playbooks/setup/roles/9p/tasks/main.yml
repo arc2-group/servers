@@ -1,6 +1,6 @@
 ---
 - name: Add kernel modules to initramfs-tools/modules
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/initramfs-tools/modules
     line: "{{ item }}"
     state: present

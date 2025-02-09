@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   nix.settings = {
     substituters = [
       "https://arc2-group.cachix.org"
