@@ -64,8 +64,8 @@
               hostname = name;
               profiles.system = {
                 path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
-                system.user = "root";
-                system.sshUser = vmUsername;
+                user = "root";
+                sshUser = vmUsername;
               };
             };
           })
