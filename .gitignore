@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-/.help
-=======
 .direnv
 .pre-commit-config.yaml
->>>>>>> 270339e (create dev shell)
