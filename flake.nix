@@ -32,6 +32,8 @@
       inputs.nixpkgs.follows = "nixpkgs_unstable";
       inputs.flake-compat.follows = "blank";
     };
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
   outputs =
     {
@@ -69,32 +71,6 @@
           # Only deploy VMs (hosts that start with 'vm-')
           (builtins.filter (name: builtins.substring 0 3 name == "vm-") configurations)
       );
-
-      # Shell
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
-      forEachSystem = nixpkgs_unstable.lib.genAttrs supportedSystems;
-
-      # Checks
-      deploy-rs-checks = builtins.mapAttrs (deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-
-      pre-commit-checks = forEachSystem (system: {
-        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            nixfmt-rfc-style.enable = true;
-            deadnix.enable = true;
-            nil.enable = true;
-            statix.enable = true;
-            ansible-lint.enable = true;
-            ansible-lint.settings.subdir = "./ansible";
-          };
-        };
-      });
     in
     {
       nixosConfigurations = builtins.listToAttrs (
@@ -117,19 +93,35 @@
           "arc2-group.cachix.org-1:SfZ4Amg/VroYhmCRNX0mQcFEWGCFWvn31s3gwEaU/2U="
         ];
       };
+    }
+    // inputs.flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import inputs.nixpkgs_unstable {
+          inherit system;
+        };
+      in
+      {
+        checks = {
+          pre-commit = inputs.pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixfmt-rfc-style.enable = true;
+              deadnix.enable = true;
+              nil.enable = true;
+              statix.enable = true;
+              ansible-lint.enable = true;
+              ansible-lint.settings.subdir = "./ansible";
+              markdownlint.enable = true;
+            };
+          };
+        } // (inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
 
-      checks = {
-        pre-commit = pre-commit-checks;
-        deploy-rs = deploy-rs-checks;
-      };
+        devShells.default = pkgs.mkShell {
+          buildInputs = self.checks.${system}.pre-commit.enabledPackages;
+          inherit (self.checks.${system}.pre-commit) shellHook;
 
-      # Shell
-      devShells = forEachSystem (system: {
-        default = nixpkgs_unstable.legacyPackages.${system}.mkShell {
-          inherit (self.checks.pre-commit.${system}.pre-commit-check) shellHook;
-          buildInputs = self.checks.pre-commit.${system}.pre-commit-check.enabledPackages;
-
-          packages = with (import nixpkgs_unstable { inherit system; }); [
+          packages = with pkgs; [
             git
             direnv
             agenix-cli
@@ -140,6 +132,6 @@
             nixos-generators
           ];
         };
-      });
-    };
+      }
+    );
 }
