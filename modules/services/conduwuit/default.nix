@@ -39,4 +39,8 @@ in
     owner = config.services.conduwuit.user;
     inherit (config.services.conduwuit) group;
   };
+
+  networking.firewall = {
+    allowedTCPPorts = [ 6167 ];
+  };
 }
