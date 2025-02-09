@@ -4,7 +4,7 @@ _: {
       forceSSL = true;
       enableACME = true;
 
-      "/" = {
+      locations."/" = {
         proxyPass = "http://vm-public-matrix:6167/";
       };
     };

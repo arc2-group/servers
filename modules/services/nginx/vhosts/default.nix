@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./matrix.nix
     ./nixarr.nix
   ];
 
