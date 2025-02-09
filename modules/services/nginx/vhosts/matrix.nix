@@ -5,7 +5,7 @@ _: {
       enableACME = true;
 
       locations."/" = {
-        proxyPass = "http://vm-public-matrix:6167/";
+        proxyPass = "http://vm-public-matrix:6167";
       };
     };
   };
