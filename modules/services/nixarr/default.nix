@@ -52,6 +52,9 @@
     };
   };
   networking.firewall = {
-    allowedTCPPorts = [ 18096 19091 ];
+    allowedTCPPorts = [
+      18096
+      19091
+    ];
   };
 }

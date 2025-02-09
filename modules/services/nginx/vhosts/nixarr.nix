@@ -8,20 +8,27 @@
         forceSSL = true;
         enableACME = true;
       };
-      proxy = { port, verifyCert ? true }: base {
-        "/" = {
-          proxyPass = "http://vm-public-media:" + toString (port) + "/";
-          extraConfig =
-            lib.mkIf verifyCert ''
+      proxy =
+        {
+          port,
+          verifyCert ? true,
+        }:
+        base {
+          "/" = {
+            proxyPass = "http://vm-public-media:" + toString port + "/";
+            extraConfig = lib.mkIf verifyCert ''
               if ($ssl_client_verify != SUCCESS) {
                 return 403;
               }
             '';
+          };
         };
-      };
     in
     {
-      "media.blazma.st" = proxy { port = 18096; verifyCert = false; }; # Jellyfin
+      "media.blazma.st" = proxy {
+        port = 18096;
+        verifyCert = false;
+      }; # Jellyfin
 
       "transmission.blazma.st" = proxy { port = 19091; };
 

@@ -1,14 +1,15 @@
-{ inputs
-, outputs
-, stateVersion
-, ...
+{
+  inputs,
+  outputs,
+  stateVersion,
+  ...
 }:
 {
   mkNixos =
-    { hostname
-    , username
-    , platform ? "x86_64-linux"
-    ,
+    {
+      hostname,
+      username,
+      platform ? "x86_64-linux",
     }:
     let
       isISO = builtins.substring 0 3 hostname == "iso";

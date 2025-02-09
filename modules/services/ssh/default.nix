@@ -1,4 +1,9 @@
-{ config, lib, hostname, ... }:
+{
+  config,
+  lib,
+  hostname,
+  ...
+}:
 let
   host-key-path = ../../../hosts/${hostname}/ssh_host_ed25519_key.age;
   use-host-key = builtins.pathExists host-key-path;
@@ -28,7 +33,7 @@ in
     };
     hostKeys = lib.mkIf use-host-key [
       {
-        path = config.age.secrets."${hostname}-host-key".path;
+        inherit (config.age.secrets."${hostname}-host-key") path;
         type = "ed25519";
       }
     ];

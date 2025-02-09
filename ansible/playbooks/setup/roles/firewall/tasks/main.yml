@@ -1,12 +1,12 @@
 ---
 - name: Create /etc/pve/firewall/
-  file:
+  ansible.builtin.file:
     path: /etc/pve/firewall/
     state: directory
     group: www-data
 
 - name: Configure cluster firewall
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: /etc/pve/firewall/
     group: www-data

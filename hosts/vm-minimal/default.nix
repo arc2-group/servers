@@ -1,8 +1,1 @@
-{ inputs
-, config
-, pkgs
-, lib
-, ...
-}:
-
-{ }
+_: { }

@@ -1,4 +1,10 @@
-{ pkgs, config, hostname, inputs, platform, ... }:
+{
+  config,
+  hostname,
+  inputs,
+  platform,
+  ...
+}:
 let
   registration-token = "${hostname}-registration-token";
 in
@@ -14,7 +20,12 @@ in
     settings.global = {
       server_name = "blazma.st";
       allow_registration = true;
-      trusted_servers = [ "matrix.org" "envs.net" "tchncs.de" "the-apothecary.club" ];
+      trusted_servers = [
+        "matrix.org"
+        "envs.net"
+        "tchncs.de"
+        "the-apothecary.club"
+      ];
       address = [ "::" ];
       max_request_size = 100000000;
 
@@ -26,6 +37,6 @@ in
   age.secrets.${registration-token} = {
     file = ./registration-token.age;
     owner = config.services.conduwuit.user;
-    group = config.services.conduwuit.group;
+    inherit (config.services.conduwuit) group;
   };
 }
