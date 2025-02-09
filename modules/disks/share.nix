@@ -1,6 +1,7 @@
-{ mountpoint ? "/data"
-, share ? "data"
-, ...
+{
+  mountpoint ? "/data",
+  share ? "data",
+  ...
 }:
 {
   fileSystems.${mountpoint} = {

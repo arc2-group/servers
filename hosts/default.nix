@@ -1,13 +1,14 @@
-{ hostname
-, inputs
-, lib
-, modulesPath
-, pkgs
-, platform
-, stateVersion
-, username
-, isInstall
-, ...
+{
+  hostname,
+  inputs,
+  lib,
+  modulesPath,
+  pkgs,
+  platform,
+  stateVersion,
+  username,
+  isInstall,
+  ...
 }:
 {
   imports = [
@@ -29,7 +30,10 @@
     consoleLogLevel = lib.mkDefault 0;
     initrd.verbose = false;
     kernelModules = [ "vhost_vsock" ];
-    kernelParams = [ "udev.log_priority=3" "console=ttyS0,115200n8" ];
+    kernelParams = [
+      "udev.log_priority=3"
+      "console=ttyS0,115200n8"
+    ];
     kernelPackages = pkgs.linuxPackages;
     loader.grub = lib.mkIf isInstall {
       enable = true;
@@ -44,13 +48,11 @@
   };
 
   environment = {
-    systemPackages =
-      with pkgs;
-      [
-        git
-        inputs.agenix.packages.${system}.default
-        rsync
-      ];
+    systemPackages = with pkgs; [
+      git
+      inputs.agenix.packages.${system}.default
+      rsync
+    ];
   };
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];

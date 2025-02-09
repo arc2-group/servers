@@ -1,44 +1,44 @@
 ---
 - name: Install Zerotier prerequisites
-  apt:
+  ansible.builtin.apt:
     package:
       - gpg
       - gnupg2
       - python3-psutil
-  
+
 - name: Add ZeroTier GPG Key
-  apt_key:
+  ansible.builtin.apt_key:
     url: "https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg"
 
 - name: Add ZeroTier Repo
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb https://download.zerotier.com/debian/bookworm bookworm main"
 
 - name: Install ZeroTier
-  apt:
+  ansible.builtin.apt:
     package: zerotier-one
 
 - name: Start zerotier-one service
-  service:
+  ansible.builtin.service:
     name: zerotier-one
     state: started
     enabled: true
 
 - name: Check if already joined ZeroTier network
-  command: zerotier-cli listnetworks
+  ansible.builtin.command: zerotier-cli listnetworks
   register: zerotier_networks
   changed_when: false
 
 - name: Join ZeroTier network
-  command: zerotier-cli join {{ zerotier_netowrk_id }}
+  ansible.builtin.command: zerotier-cli join {{ zerotier_netowrk_id }}
   register: zerotier_join
   when: zerotier_netowrk_id not in zerotier_networks.stdout
 
 - name: Get ZeroTier info
-  command: zerotier-cli info
+  ansible.builtin.command: zerotier-cli info
   register: zerotier_info
   changed_when: false
 
 - name: Display ZeroTier info
-  debug:
+  ansible.builtin.debug:
     var: zerotier_info.stdout

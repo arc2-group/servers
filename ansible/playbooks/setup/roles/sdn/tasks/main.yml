@@ -1,42 +1,41 @@
 ---
-
 - name: Check if VXLAN already exists
-  command: >
+  ansible.builtin.command: >
     pvesh ls cluster/sdn/zones
   register: vxlan_output
   changed_when: false
 
 - name: Create VXLAN interface
-  command: >
+  ansible.builtin.command: >
     pvesh create cluster/sdn/zones --type vxlan --zone {{ vxlan_id }} --peers {{ vxlan_peer_ips }}
   when: vxlan_id not in vxlan_output.stdout
 
 - name: Check existing VNets
-  command: >
+  ansible.builtin.command: >
     pvesh ls cluster/sdn/vnets
   register: vnet_output
   changed_when: false
 
 - name: Create VNet if it does not exist
-  command: >
+  ansible.builtin.command: >
     pvesh create cluster/sdn/vnets --vnet {{ item.id }} --zone arc2 --tag {{ item.tag }}
   when: item.id not in vnet_output.stdout
   loop: "{{ vnets }}"
   register: vnet_creation_output
 
 - name: Create Subnet for each VNet
-  command: >
+  ansible.builtin.command: >
     pvesh create cluster/sdn/vnets/{{ item.id }}/subnets --type subnet --subnet {{ item.cidr }}
   loop: "{{ vnets }}"
-  ignore_errors: yes 
+  ignore_errors: true
 
 - name: Enable IPv6 forwarding
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sysctl.conf
     regexp: ^#?net.ipv6.conf.all.forwarding
     line: net.ipv6.conf.all.forwarding=1
   notify: Reload sysctl
 
 - name: Reload & apply SDNs
-  command: >
+  ansible.builtin.command: >-
     pvesh set cluster/sdn

@@ -1,6 +1,6 @@
 ---
 - name: Disable laptop lid closing shutting down the laptop
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/systemd/logind.conf
     regexp: ^HandleLidSwitch=
     line: HandleLidSwitch=ignore
