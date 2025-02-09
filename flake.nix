@@ -24,6 +24,7 @@
         cachix.follows = "blank";
         complement.follows = "blank";
         flake-compat.follows = "blank";
+        flake-utils.follows = "flake-utils";
       };
     };
 
