@@ -7,6 +7,7 @@ policy_in: DROP
 
 vm-admin fd5e:934f:acab:1::6001
 vm-public-ingress fd5e:934f:acab:1::6003
+vm-monitoring fd5e:934f:acab:1::6006
 
 [IPSET cluster]
 
@@ -34,3 +35,5 @@ IN ACCEPT -source +sdn/PApp-all -p ipv6-icmp -log nolog # Ping
 IN SSH(ACCEPT) -source dc/vm-admin -log nolog # Accept SSH from vm-admin
 IN SSH(DROP) -log notice # Drop other SSH
 IN DROP -log nolog # Drop other incoming
+IN ACCEPT -source dc/vm-monitoring -p tcp -dport 9100 -log nolog # Accept Node Exporter from vm-monitoring
+IN ACCEPT -source dc/vm-monitoring -p tcp -dport 9558 -log nolog # Accept Systemd Exporter from vm-monitoring

@@ -10,6 +10,7 @@
       hostname,
       username,
       platform ? "x86_64-linux",
+      vms,
     }:
     let
       isISO = builtins.substring 0 3 hostname == "iso";
@@ -26,6 +27,7 @@
           stateVersion
           isISO
           isInstall
+          vms
           ;
       };
       modules = [ ../hosts ];
