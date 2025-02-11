@@ -27,7 +27,7 @@ in
     ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 3000 ];
+  networking.firewall.allowedTCPPorts = [ config.services.grafana.settings.server.http_port ];
 
   age.secrets.${admin-password} =
     let
