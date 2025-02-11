@@ -36,4 +36,5 @@ in
   "modules/services/conduwuit/registration-token.age".publicKeys = [ vm-public-matrix ] ++ everyone;
 
   "hosts/vm-monitoring/ssh_host_ed25519_key.age".publicKeys = [ vm-monitoring ] ++ everyone;
+  "modules/services/monitoring/grafana/admin-password.age".publicKeys = [ vm-monitoring ] ++ everyone;
 }

@@ -17,6 +17,7 @@
     ../modules/cache
     ../modules/cloud-init
     ../modules/disks
+    ../modules/exporter
     ../modules/hosts
     ../modules/users
     ../modules/services/ssh
