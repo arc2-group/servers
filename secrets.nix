@@ -1,10 +1,12 @@
 let
   a1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpmdkxAZH3See4FaPgiZoTxpcEC1orOGB9cXoQtYUYI";
   a2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiiNmXma1IijIE6U6CKsGcmfGf0gqSZ5S0fvZABv+tA";
+  a3 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGk2s3Q7/djy4ytAQUBpVuo+97yQz9p4tzREX+vujoy";
 
   admins = [
     a1
     a2
+    a3
   ];
 
   vm-admin = builtins.readFile ./hosts/vm-admin/ssh_host_ed25519_key.pub;
