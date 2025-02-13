@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   services.nginx = {
     enable = true;
@@ -16,10 +16,6 @@
       ssl_client_certificate ${./ssl_client_certificate.crt};
       ssl_verify_client optional;
     '';
-
-    additionalModules = [
-      pkgs.nginxModules.geoip2
-    ];
 
     commonHttpConfig = ''
       log_format json_analytics escape=json '{'
@@ -59,7 +55,6 @@
       '"server_protocol": "$server_protocol", ' # request protocol, like HTTP/1.1 or HTTP/2.0
       '"pipe": "$pipe", ' # "p" if request was pipelined, "." otherwise
       '"gzip_ratio": "$gzip_ratio"'
-      '"geoip_country_code": "$geoip_country_code"'
       '}';
 
       access_log /var/log/nginx/json_access.log json_analytics;
