@@ -41,7 +41,7 @@ in
       }
       {
         job_name = "nginx";
-        static_configs = [ "vm-public-ingress:9113" ];
+        static_configs = [ { targets = [ "vm-public-ingress:9113" ]; } ];
       }
     ];
   };
