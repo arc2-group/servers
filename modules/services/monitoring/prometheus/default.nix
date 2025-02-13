@@ -17,6 +17,8 @@ let
     in
     "${vm}:${port}"
   ) vms;
+
+  alloyTargets = map (vm: "${vm}:28183") vms;
 in
 {
   services.prometheus = {
@@ -32,6 +34,10 @@ in
       {
         job_name = "systemd";
         static_configs = [ { targets = systemdTargets; } ];
+      }
+      {
+        job_name = "alloy";
+        static_configs = [ { targets = alloyTargets; } ];
       }
     ];
   };
