@@ -39,6 +39,10 @@ in
         job_name = "alloy";
         static_configs = [ { targets = alloyTargets; } ];
       }
+      {
+        job_name = "nginx";
+        static_configs = [ "vm-public-ingress:9113" ];
+      }
     ];
   };
 }

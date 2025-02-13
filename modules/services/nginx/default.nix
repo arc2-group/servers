@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   services.nginx = {
     enable = true;
@@ -16,6 +16,9 @@
       ssl_client_certificate ${./ssl_client_certificate.crt};
       ssl_verify_client optional;
     '';
+
+    # Status page for Prometheus Nginx exporter
+    statusPage = true;
   };
 
   # Server certificates
@@ -32,7 +35,15 @@
     allowedTCPPorts = [
       80
       443
+      config.services.prometheus.exporters.nginx.port
     ];
     allowedUDPPorts = [ 443 ];
+  };
+
+  # Prometheus metrics for Nginx
+  services.prometheus.exporters.nginx = {
+    enable = true;
+    port = 9113;
+    listenAddress = "[::]";
   };
 }
