@@ -125,7 +125,7 @@
           packages = with pkgs; [
             git
             direnv
-            agenix-cli
+            inputs.agenix.outputs.packages.${system}.default
             ssh-to-age
             openssl
             ansible
