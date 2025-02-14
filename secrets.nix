@@ -30,6 +30,7 @@ in
   "hosts/vm-public-ingress/ssh_host_ed25519_key.age".publicKeys = [ vm-public-ingress ] ++ everyone;
 
   "hosts/vm-public-media/ssh_host_ed25519_key.age".publicKeys = [ vm-public-media ] ++ everyone;
+  "modules/services/navidrome/secrets.env.age".publicKeys = [ vm-public-media ] ++ everyone;
 
   "hosts/vm-public-matrix/ssh_host_ed25519_key.age".publicKeys = [ vm-public-matrix ] ++ everyone;
   "modules/services/conduwuit/registration-token.age".publicKeys = [ vm-public-matrix ] ++ everyone;
