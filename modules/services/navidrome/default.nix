@@ -5,6 +5,7 @@ in
 {
   services.navidrome = {
     enable = true;
+    openFirewall = true;
     group = "media";
     settings = {
       MusicFolder = "/data/library/music";
@@ -27,10 +28,6 @@ in
       #UILoginBackgroundUrl = "";
 
     };
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [ 4533 ];
   };
 
   age.secrets.${secrets} = {
