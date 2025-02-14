@@ -74,6 +74,18 @@
       # Make flake registry and nix path match flake inputs
       registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+
+      # Nix store optimisations
+      optimise = {
+        automatic = true;
+        # missing in 24.11, add when updating to 25.05
+        # randomizedDelaySec = "45min";
+      };
+      gc = {
+        automatic = true;
+        options = "--delete-older-than 8d";
+        randomizedDelaySec = "45min";
+      };
     };
 
   nixpkgs.hostPlatform = lib.mkDefault "${platform}";
