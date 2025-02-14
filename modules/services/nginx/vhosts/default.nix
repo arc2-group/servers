@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./grafana.nix
     ./matrix.nix
     ./nixarr.nix
   ];

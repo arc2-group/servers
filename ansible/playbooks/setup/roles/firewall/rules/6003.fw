@@ -10,4 +10,6 @@ IN ACCEPT -p tcp -dport 80 -log nolog # HTTP
 IN ACCEPT -p tcp -dport 443 -log nolog # HTTPS
 IN ACCEPT -p udp -dport 443 -log nolog # HTTPS (QUIC)
 
+IN ACCEPT -source dc/vm-monitoring -p tcp -dport 9113 -log nolog # Prometheus Nginx exporter
+
 GROUP gp-vm
