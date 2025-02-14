@@ -5,7 +5,6 @@ in
 {
   services.navidrome = {
     enable = true;
-    openFirewall = true;
     group = "media";
     settings = {
       MusicFolder = "/data/library/music";
