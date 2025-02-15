@@ -22,17 +22,12 @@
       '"msec": "$msec", ' # request unixtime in seconds with a milliseconds resolution
       '"connection": "$connection", ' # connection serial number
       '"connection_requests": "$connection_requests", ' # number of requests made in connection
-      '"pid": "$pid", ' # process pid
       '"request_id": "$request_id", ' # the unique request id
       '"request_length": "$request_length", ' # request length (including headers and body)
       '"remote_addr": "$remote_addr", ' # client IP
-      '"remote_user": "$remote_user", ' # client HTTP username
       '"remote_port": "$remote_port", ' # client port
-      '"time_local": "$time_local", '
       '"time_iso8601": "$time_iso8601", ' # local time in the ISO 8601 standard format
-      '"request": "$request", ' # full path no arguments if the request
       '"request_uri": "$request_uri", ' # full path and arguments if the request
-      '"args": "$args", ' # args
       '"status": "$status", ' # response status code
       '"body_bytes_sent": "$body_bytes_sent", ' # the number of body bytes exclude headers sent to a client
       '"bytes_sent": "$bytes_sent", ' # the number of bytes sent to a client
