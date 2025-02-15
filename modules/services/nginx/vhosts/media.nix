@@ -38,5 +38,6 @@
       "radarr.blazma.st" = proxy { port = 7878; };
       "readarr.blazma.st" = proxy { port = 8787; };
       "sonarr.blazma.st" = proxy { port = 8989; };
+      "music.blazma.st" = proxy { port = 4533; };
     };
 }
