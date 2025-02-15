@@ -1,21 +1,41 @@
-{ pkgs, config, hostname, inputs, platform, ... }:
+{ config, hostname, ... }:
+let
+  secrets = "${hostname}-peertube-secrets";
+  dbPassword = "${hostname}-peertube-db-password";
+  redisPassword = "${hostname}-peertube-redis-password";
+in
 {
   services.peertube = {
     enable = true;
     localDomain = "video.blazma.st";
     enableWebHttps = true;
+    listenWeb = 443;
     database = {
-      host = ["::"];
-      name = "peertube";
-      user = "peertube";
-      passwordFile = "/etc/peertube/password-rocksdb-db";
+      createLocally = true;
+      passwordFile = config.age.secrets.${dbPassword}.path;
     };
     redis = {
-      host = ["::"];
-      passwordFile = "/etc/peertube/password-redis-db";
+      createLocally = true;
+      passwordFile = config.age.secrets.${redisPassword}.path;
     };
     settings = {
-      listen.hostname = "0.0.0.0";
+      listen.hostname = "::";
+    };
+    secrets.secretsFile = config.age.secrets.${secrets}.path;
+  };
+
+  age.secrets = {
+    ${secrets} = {
+      file = ./secrets.age;
+      inherit (config.services.peertube) group;
+    };
+    ${dbPassword} = {
+      file = ./db-password.age;
+      inherit (config.services.peertube) group;
+    };
+    ${redisPassword} = {
+      file = ./redis-password.age;
+      inherit (config.services.peertube) group;
     };
   };
-};
+}
