@@ -2,7 +2,7 @@
 {
   imports = [
     ./matrix.nix
-    ./nixarr.nix
+    ./media.nix
   ];
 
   services.nginx.virtualHosts."_" = {
