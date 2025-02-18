@@ -54,23 +54,21 @@
       configurations = builtins.filter (entry: entries.${entry} == "directory") (
         builtins.attrNames entries
       );
+      vms = builtins.filter (name: builtins.substring 0 3 name == "vm-") configurations;
 
       # Generate deploy-rs config
       deployNodes = builtins.listToAttrs (
-        map
-          (name: {
-            inherit name;
-            value = {
-              hostname = name;
-              profiles.system = {
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
-                user = "root";
-                sshUser = vmUsername;
-              };
+        map (name: {
+          inherit name;
+          value = {
+            hostname = name;
+            profiles.system = {
+              path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
+              user = "root";
+              sshUser = vmUsername;
             };
-          })
-          # Only deploy VMs (hosts that start with 'vm-')
-          (builtins.filter (name: builtins.substring 0 3 name == "vm-") configurations)
+          };
+        }) vms
       );
     in
     {
@@ -80,6 +78,7 @@
           value = helper.mkNixos {
             hostname = name;
             username = vmUsername;
+            inherit vms;
           };
         }) configurations
       );
@@ -131,6 +130,7 @@
             ansible
             nixos-anywhere
             nixos-generators
+            inputs.deploy-rs.outputs.packages.${system}.deploy-rs
           ];
         };
       }
