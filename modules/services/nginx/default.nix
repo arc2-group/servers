@@ -68,6 +68,7 @@
     };
 
     # logrotate to delete locally saved logs
+    logrotate.enable = true;
     logrotate.settings.nginx = {
       frequency = "daily";
       rotate = 0; # don't keep anything
