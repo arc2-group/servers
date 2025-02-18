@@ -113,5 +113,5 @@
   '';
 
   # Add Alloy to nginx group so it can read the log files
-  systemd.services.alloy.SupplementaryGroups = [ "nginx" ];
+  systemd.services.alloy.serviceConfig.SupplementaryGroups = [ "nginx" ];
 }
