@@ -96,19 +96,22 @@
   # Alloy for sending Nginx logs
   systemd.services.alloy.reloadTriggers = [ config.environment.etc."alloy/nginx.alloy".source ];
   environment.etc."alloy/nginx.alloy".text = ''
-    local.file_match "logs_integrations_integrations_nginx" {
+    local.file_match "logs_integrations_nginx" {
       path_targets = [{
-        __address__ = "localhost",
-        __path__    = "/var/log/nginx/json_access.log",
+        address = "localhost",
+        path    = "/var/log/nginx/json_access.log",
         host        = "<http_hostname>",
         instance    = constants.hostname,
         job         = "integrations/nginx",
       }]
     }
 
-    loki.source.file "logs_integrations_integrations_nginx" {
-      targets    = local.file_match.logs_integrations_integrations_nginx.targets
+    loki.source.file "logs_integrations_nginx" {
+      targets    = local.file_match.logs_integrations_nginx.targets
       forward_to = [loki.write.default.receiver]
     }
   '';
+
+  # Add Alloy to nginx group so it can read the log files
+  systemd.services.alloy.SupplementaryGroups = [ "nginx" ];
 }
