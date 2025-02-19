@@ -15,7 +15,7 @@ in
 
   services.conduwuit = {
     enable = true;
-    package = inputs.conduwuit.packages.${platform}.default;
+    package = inputs.conduwuit.packages.${platform}.default-debug;
 
     settings.global = {
       server_name = "blazma.st";
