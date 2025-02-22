@@ -1,22 +1,14 @@
 ---
 # VXLAN Zone (Cluster-wide network)
 # Name
-vxlan_id: arc2
+sdn_vxlan_id: arc2
 # Comma-separated (Zerotier) IPs for all nodes
-vxlan_peer_ips: "{{ lookup('env', 'VXLAN_PEER_IPS') }}"
+sdn_vxlan_peer_ips: "{{ lookup('env', 'VXLAN_PEER_IPS') }}"
 
 # VNets
 # (ID needs to be <=8 characters)
-vnets:
-  - id: PMgmt
-    alias: ProdManagment
-    cidr: fd5e:934f:acab:ffff::/64
-    tag: 100
+sdn_vnets:
   - id: PApp
     alias: ProdApp
     cidr: fd5e:934f:acab:0001::/64
     tag: 101
-  - id: PIn
-    alias: ProdIngress
-    cidr: fd5e:934f:acab:0002::/64
-    tag: 102
