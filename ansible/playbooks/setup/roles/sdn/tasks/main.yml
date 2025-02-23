@@ -1,33 +1,32 @@
 ---
-- name: Check if VXLAN already exists
-  ansible.builtin.command: >
-    pvesh ls cluster/sdn/zones
-  register: vxlan_output
-  changed_when: false
-
 - name: Create VXLAN interface
   ansible.builtin.command: >
-    pvesh create cluster/sdn/zones --type vxlan --zone {{ vxlan_id }} --peers {{ vxlan_peer_ips }}
-  when: vxlan_id not in vxlan_output.stdout
+    pvesh create cluster/sdn/zones --type vxlan --zone {{ sdn_vxlan_id }} --peers {{ sdn_vxlan_peer_ips }}
+  register: vxlan_output
+  failed_when:
+    - vxlan_output.rc != 0
+    - "'already defined' not in vxlan_output.stderr"
+  changed_when: "'already defined' not in vxlan_output.stderr"
 
-- name: Check existing VNets
-  ansible.builtin.command: >
-    pvesh ls cluster/sdn/vnets
-  register: vnet_output
-  changed_when: false
-
-- name: Create VNet if it does not exist
+- name: Create VNet
   ansible.builtin.command: >
     pvesh create cluster/sdn/vnets --vnet {{ item.id }} --zone arc2 --tag {{ item.tag }}
-  when: item.id not in vnet_output.stdout
-  loop: "{{ vnets }}"
+  loop: "{{ sdn_vnets }}"
   register: vnet_creation_output
+  failed_when:
+    - vnet_creation_output.rc != 0
+    - "'already defined' not in vnet_creation_output.stderr"
+  changed_when: "'already defined' not in vnet_creation_output.stderr"
 
 - name: Create Subnet for each VNet
   ansible.builtin.command: >
     pvesh create cluster/sdn/vnets/{{ item.id }}/subnets --type subnet --subnet {{ item.cidr }}
-  loop: "{{ vnets }}"
-  ignore_errors: true
+  loop: "{{ sdn_vnets }}"
+  register: subnet_output
+  failed_when:
+    - subnet_output.rc != 0
+    - "'already defined' not in subnet_output.stderr"
+  changed_when: "'already defined' not in subnet_output.stderr"
 
 - name: Enable IPv6 forwarding
   ansible.builtin.lineinfile:
@@ -39,3 +38,5 @@
 - name: Reload & apply SDNs
   ansible.builtin.command: >-
     pvesh set cluster/sdn
+  # no changes done, this command only reloads the network config
+  changed_when: false
