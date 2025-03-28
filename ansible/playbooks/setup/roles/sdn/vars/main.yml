@@ -3,7 +3,7 @@
 # Name
 sdn_vxlan_id: arc2
 # Comma-separated (Zerotier) IPs for all nodes
-sdn_vxlan_peer_ips: "{{ lookup('env', 'VXLAN_PEER_IPS') }}"
+sdn_vxlan_peer_ips: "172.25.71.236,172.25.71.27"
 
 # VNets
 # (ID needs to be <=8 characters)
