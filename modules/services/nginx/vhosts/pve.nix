@@ -13,6 +13,7 @@ _: {
 
       locations."/" = {
         proxyPass = "https://pve";
+        proxyWebsockets = true;
       };
 
       extraConfig = ''
