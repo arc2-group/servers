@@ -20,6 +20,9 @@
               if ($ssl_client_verify != SUCCESS) {
                 return 403;
               }
+              if ($permissions !~ "admin") {
+                return 403;
+              }
             '';
           };
         };
