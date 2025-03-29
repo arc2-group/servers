@@ -23,6 +23,8 @@
           "~*CN=condone4519" "admin";
           "~*CN=uneasy8119" "admin";
           "~*CN=muster4333" "admin";
+
+          "~*CN=LatviaFM" "pve";
         }
       '';
 
