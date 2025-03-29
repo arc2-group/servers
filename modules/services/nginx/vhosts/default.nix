@@ -1,9 +1,11 @@
 { ... }:
 {
+  # TODO: load all vhosts in the direcotry automatically
   imports = [
     ./grafana.nix
     ./matrix.nix
     ./nixarr.nix
+    ./pve.nix
   ];
 
   services.nginx.virtualHosts."_" = {
