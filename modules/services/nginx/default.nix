@@ -16,6 +16,14 @@
       appendHttpConfig = ''
         ssl_client_certificate ${./ssl_client_certificate.crt};
         ssl_verify_client optional;
+
+        map $ssl_client_s_dn $permissions {
+          default "";
+          "~*CN=suffocate3069" "admin";
+          "~*CN=condone4519" "admin";
+          "~*CN=uneasy8119" "admin";
+          "~*CN=muster4333" "admin";
+        }
       '';
 
       # Status page for Prometheus Nginx exporter
