@@ -12,6 +12,10 @@ sdn_vnets:
     alias: ProdApp
     cidr: fd5e:934f:acab:0001::/64
     tag: 101
+  - id: PExt
+    alias: ProdExt
+    cidr: fd5e:934f:acab:0002::/64
+    tag: 102
 
 # Simple Zone
 sdn_simple_zone_id: local
