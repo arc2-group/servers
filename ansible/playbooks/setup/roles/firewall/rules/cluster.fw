@@ -25,9 +25,10 @@ fd27:2f5e:ae16:336f:1099::/80 # Zerotier RFC4193
 
 [RULES]
 
-IN DHCPv6(ACCEPT) -i PApp -log nolog
-IN DNS(ACCEPT) -i PApp -dest +sdn/PApp-gateway -log nolog
-IN DHCPfwd(ACCEPT) -i PApp -log nolog
+FORWARD DROP -i vnet0 -source +sdn/vnet0-no-gateway -dest +dc/private -log notice # prevent vnet0 VMs from accessing the private network
+IN DHCPv6(ACCEPT) -log nolog # rules for vnets
+IN DNS(ACCEPT) -log nolog # rules for vnets
+IN DHCPfwd(ACCEPT) -log nolog # rules for vnets
 IN ACCEPT -source +dc/cluster -p udp -dport 4789 -log nolog # PVE VXLAN underlay
 IN SSH(ACCEPT) -source +dc/cluster -log nolog # PVE cluster SSH
 IN SSH(ACCEPT) -source +dc/local -log info # local SSH
@@ -35,11 +36,6 @@ IN SSH(DROP) -log notice # Drop other SSH
 IN ACCEPT -source +dc/cluster -p icmp -log nolog # Host Ping
 IN ACCEPT -source +dc/local -p tcp -dport 8006 -log nolog # PVE Web GUI
 IN ACCEPT -p udp -dport 9993 -log nolog # ZeroTier
-
-
-[group other-vm]
-
-OUT REJECT -dest +dc/private -log notice # reject connections to the private network
 
 [group gp-vm]
 

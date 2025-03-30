@@ -46,6 +46,10 @@
   ansible.builtin.apt:
     package: sshguard
 
+- name: Install dnsmasq
+  ansible.builtin.apt:
+    package: dnsmasq
+
 - name: Add automatic upgrades to cron
   ansible.builtin.cron:
     name: upgrade

@@ -28,6 +28,44 @@
     - "'already defined' not in subnet_output.stderr"
   changed_when: "'already defined' not in subnet_output.stderr"
 
+- name: Create Simple Zone
+  ansible.builtin.command: >
+    pvesh create cluster/sdn/zones \
+    --type simple \
+    --zone {{ sdn_simple_zone_id }} \
+    --dhcp dnsmasq \
+    --ipam pve
+  register: simple_zone_output
+  failed_when:
+    - simple_zone_output.rc != 0
+    - "'already defined' not in simple_zone_output.stderr"
+  changed_when: "'already defined' not in simple_zone_output.stderr"
+
+- name: Create VNet (simple)
+  ansible.builtin.command: >
+    pvesh create cluster/sdn/vnets \
+    --vnet {{ sdn_simple_vnet_id }} \
+    --zone {{ sdn_simple_zone_id }}
+  register: vnet_creation_output
+  failed_when:
+    - vnet_creation_output.rc != 0
+    - "'already defined' not in vnet_creation_output.stderr"
+  changed_when: "'already defined' not in vnet_creation_output.stderr"
+
+- name: Create Subnet for VNet (simple)
+  ansible.builtin.command: >
+    pvesh create cluster/sdn/vnets/{{ sdn_simple_vnet_id }}/subnets \
+    --type subnet \
+    --subnet {{ sdn_simple_subnet_cidr }} \
+    --gateway {{ sdn_simple_gateway_ip }} \
+    --snat 1 \
+    --dhcp-range 'start-address={{ sdn_simple_dhcp_start }},end-address={{ sdn_simple_dhcp_end }}'
+  register: subnet_output
+  failed_when:
+    - subnet_output.rc != 0
+    - "'already defined' not in subnet_output.stderr"
+  changed_when: "'already defined' not in subnet_output.stderr"
+
 - name: Enable IPv6 forwarding
   ansible.builtin.lineinfile:
     path: /etc/sysctl.conf

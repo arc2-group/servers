@@ -14,3 +14,10 @@
   ignore_errors: true
   with_fileglob:
     - ../rules/*
+
+- name: Configure host firewall
+  ansible.builtin.copy:
+    src: ../host.fw
+    dest: /etc/pve/local/
+    group: www-data
+    unsafe_writes: true

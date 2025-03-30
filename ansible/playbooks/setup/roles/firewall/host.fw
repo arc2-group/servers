@@ -1,0 +1,7 @@
+[OPTIONS]
+
+log_level_forward: nolog
+log_level_out: nolog
+log_level_in: nolog
+
+nftables: 1
