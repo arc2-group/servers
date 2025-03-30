@@ -24,3 +24,10 @@ sdn_simple_subnet_cidr: 172.21.136.0/24
 sdn_simple_gateway_ip: 172.21.136.254
 sdn_simple_dhcp_start: 172.21.136.100
 sdn_simple_dhcp_end: 172.21.136.199
+
+sdn_simple_lpve_zone_id: local
+sdn_simple_lpve_vnet_id: LPVE
+sdn_simple_lpve_subnet_cidr: fd5e:934f:acab:0003::/64
+sdn_simple_lpve_gateway_ip: fd5e:934f:acab:0003::ffff
+sdn_simple_lpve_dhcp_start: fd5e:934f:acab:0003:d4c9::1
+sdn_simple_lpve_dhcp_end: fd5e:934f:acab:0003:d4c9::ffff

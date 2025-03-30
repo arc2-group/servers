@@ -25,6 +25,7 @@ fd27:2f5e:ae16:336f:1099::/80 # Zerotier RFC4193
 
 [RULES]
 
+IN ACCEPT -source +sdn/LPVE-all -dest fd5e:934f:acab:0003::ffff -p tcp -dport 8006 -log nolog # Accept connections from VM - PVE network for WebUI (used by Nginx)
 FORWARD DROP -source +sdn/vnet0-no-gateway -dest +dc/private -log notice # prevent vnet0 VMs from accessing the private network
 IN DHCPv6(ACCEPT) -log nolog # rules for vnets
 IN DNS(ACCEPT) -log nolog # rules for vnets
@@ -34,7 +35,7 @@ IN SSH(ACCEPT) -source +dc/cluster -log nolog # PVE cluster SSH
 IN SSH(ACCEPT) -source +dc/local -log info # local SSH
 IN SSH(DROP) -log notice # Drop other SSH
 IN ACCEPT -source +dc/cluster -p icmp -log nolog # Host Ping
-IN ACCEPT -source +dc/local -p tcp -dport 8006 -log nolog # PVE Web GUI
+IN ACCEPT -source +dc/local -p tcp -dport 8006 -log nolog # PVE Web GUI (locally)
 IN ACCEPT -p udp -dport 9993 -log nolog # ZeroTier
 
 [group gp-vm]
