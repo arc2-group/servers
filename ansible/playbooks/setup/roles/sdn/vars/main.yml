@@ -12,3 +12,11 @@ sdn_vnets:
     alias: ProdApp
     cidr: fd5e:934f:acab:0001::/64
     tag: 101
+
+# Simple Zone
+sdn_simple_zone_id: local
+sdn_simple_vnet_id: vnet0
+sdn_simple_subnet_cidr: 172.21.136.0/24
+sdn_simple_gateway_ip: 172.21.136.254
+sdn_simple_dhcp_start: 172.21.136.100
+sdn_simple_dhcp_end: 172.21.136.199
