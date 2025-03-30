@@ -1,8 +1,7 @@
 _: {
   services.nginx.appendHttpConfig = ''
     upstream pve {
-      server 192.168.12.254:8006 weight=5;
-      server 192.168.13.254:8006;
+      server [fd5e:934f:acab:3::ffff]:8006;
     }
   '';
 

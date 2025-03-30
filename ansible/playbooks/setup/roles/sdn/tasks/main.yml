@@ -66,6 +66,31 @@
     - "'already defined' not in subnet_output.stderr"
   changed_when: "'already defined' not in subnet_output.stderr"
 
+- name: Create VNet (LPVE)
+  ansible.builtin.command: >
+    pvesh create cluster/sdn/vnets \
+    --vnet {{ sdn_simple_lpve_vnet_id }} \
+    --zone {{ sdn_simple_lpve_zone_id }}
+  register: vnet_creation_output
+  failed_when:
+    - vnet_creation_output.rc != 0
+    - "'already defined' not in vnet_creation_output.stderr"
+  changed_when: "'already defined' not in vnet_creation_output.stderr"
+
+- name: Create Subnet for VNet (LPVE)
+  ansible.builtin.command: >
+    pvesh create cluster/sdn/vnets/{{ sdn_simple_lpve_vnet_id }}/subnets \
+    --type subnet \
+    --subnet {{ sdn_simple_lpve_subnet_cidr }} \
+    --gateway {{ sdn_simple_lpve_gateway_ip }} \
+    --snat 0 \
+    --dhcp-range 'start-address={{ sdn_simple_lpve_dhcp_start }},end-address={{ sdn_simple_lpve_dhcp_end }}'
+  register: subnet_output
+  failed_when:
+    - subnet_output.rc != 0
+    - "'already defined' not in subnet_output.stderr"
+  changed_when: "'already defined' not in subnet_output.stderr"
+
 - name: Enable IPv6 forwarding
   ansible.builtin.lineinfile:
     path: /etc/sysctl.conf
