@@ -12,4 +12,7 @@ IN ACCEPT -p udp -dport 443 -log nolog # HTTPS (QUIC)
 
 IN ACCEPT -source dc/vm-monitoring -p tcp -dport 9113 -log nolog # Prometheus Nginx exporter
 
+IN ACCEPT -p tcp -dport 8005 -log nolog # ltvg stream proxy
+IN ACCEPT -p tcp -dport 8006 -log nolog # ltvg stream proxy
+
 GROUP gp-vm
