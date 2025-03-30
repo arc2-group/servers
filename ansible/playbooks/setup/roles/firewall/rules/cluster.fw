@@ -25,7 +25,7 @@ fd27:2f5e:ae16:336f:1099::/80 # Zerotier RFC4193
 
 [RULES]
 
-FORWARD DROP -i vnet0 -source +sdn/vnet0-no-gateway -dest +dc/private -log notice # prevent vnet0 VMs from accessing the private network
+FORWARD DROP -source +sdn/vnet0-no-gateway -dest +dc/private -log notice # prevent vnet0 VMs from accessing the private network
 IN DHCPv6(ACCEPT) -log nolog # rules for vnets
 IN DNS(ACCEPT) -log nolog # rules for vnets
 IN DHCPfwd(ACCEPT) -log nolog # rules for vnets
