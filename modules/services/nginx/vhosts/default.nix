@@ -6,6 +6,9 @@
     ./matrix.nix
     ./nixarr.nix
     ./pve.nix
+
+    # external
+    ./ltvg.nix
   ];
 
   services.nginx.virtualHosts."_" = {
