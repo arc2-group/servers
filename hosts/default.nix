@@ -108,6 +108,7 @@
     randomizedDelaySec = "45min";
     persistent = true;
     flake = "github:arc2-group/servers#${hostname}";
+    flags = [ "--accept-flake-config" ];
   };
 
   # Enable QEMU Guest agent (for VMs)
