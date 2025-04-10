@@ -20,6 +20,9 @@
   ansible.builtin.apt:
     update_cache: true
     upgrade: full
+    autoclean: true
+    autoremove: true
+    clean: true
 
 - name: Add SSH key (gk)
   ansible.posix.authorized_key:
