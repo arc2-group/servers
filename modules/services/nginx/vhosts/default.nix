@@ -5,6 +5,7 @@
     ./grafana.nix
     ./matrix.nix
     ./nixarr.nix
+    ./prometheus.nix
     ./pve.nix
 
     # external

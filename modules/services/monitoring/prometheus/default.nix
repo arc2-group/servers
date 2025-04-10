@@ -1,4 +1,9 @@
-{ outputs, vms, ... }:
+{
+  outputs,
+  vms,
+  config,
+  ...
+}:
 let
   nodeTargets = map (
     vm:
@@ -23,7 +28,7 @@ in
 {
   services.prometheus = {
     enable = true;
-    listenAddress = "[::1]";
+    listenAddress = "[::]";
     port = 9090;
 
     scrapeConfigs = [
@@ -45,4 +50,6 @@ in
       }
     ];
   };
+
+  networking.firewall.allowedTCPPorts = [ config.services.prometheus.port ];
 }
