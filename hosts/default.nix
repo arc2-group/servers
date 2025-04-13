@@ -113,4 +113,9 @@
 
   # Enable QEMU Guest agent (for VMs)
   services.qemuGuest.enable = true;
+
+  # zram
+  zramSwap = {
+    enable = true;
+  };
 }
