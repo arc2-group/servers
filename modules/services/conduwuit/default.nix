@@ -9,10 +9,8 @@ let
   registration-token = "${hostname}-registration-token";
 in
 {
-  # Use conduwuit service from unstable
-  disabledModules = [ "services/matrix/conduwuit.nix" ];
   imports = [
-    (inputs.nixpkgs_unstable + "/nixos/modules/services/matrix/conduwuit.nix")
+    ./service.nix
     ./bridges
   ];
 
