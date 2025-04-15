@@ -45,7 +45,7 @@
     3. Decrypt the admin VM host key in a temp directory
 
         ```sh
-        agenix -d hosts/vm-admin/ssh_host_ed25519_key.age > "$temp/etc/ssh/ssh_host_ed25519_key"
+        agenix -d hosts/vm-admin/ssh_host_ed25519_key.age > "$temp/root/ssh_host_ed25519_key"
         ```
 
     4. Do the install with the host key.
