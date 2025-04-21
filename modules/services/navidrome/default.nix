@@ -8,8 +8,8 @@ in
     openFirewall = true;
     group = "media";
     settings = {
-      MusicFolder = "/data/library/music";
-      DataFolder = "/navidrome";
+      MusicFolder = "/media/library/music";
+      DataFolder = "/var/navidrome";
       Address = "[::]";
 
       # someone is against setting this to false
