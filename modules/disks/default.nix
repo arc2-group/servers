@@ -8,7 +8,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/disk/by-path/pci-0000:01:01.0-scsi-0:0:0:0";
         content = {
           type = "gpt";
           partitions = {

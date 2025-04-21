@@ -13,7 +13,7 @@
     disk = {
       ${device} = {
         type = "disk";
-        device = "/dev/${device}";
+        device = "${device}";
         content = {
           type = "gpt";
           partitions = {
