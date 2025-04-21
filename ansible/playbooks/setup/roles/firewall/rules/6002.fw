@@ -14,5 +14,6 @@ IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 9696 -log nolog # Prowlarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 7878 -log nolog # Radarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8787 -log nolog # Readarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8989 -log nolog # Sonarr
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 4533 -log nolog # Navidrome
 
 GROUP gp-vm
