@@ -15,5 +15,7 @@ IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 7878 -log nolog # Radarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8787 -log nolog # Readarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8989 -log nolog # Sonarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 4533 -log nolog # Navidrome
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 15030 -log nolog # slskd web
+IN ACCEPT -p tcp -dport 50300 -log nolog # slskd soulseek
 
 GROUP gp-vm
