@@ -33,6 +33,11 @@
         verifyCert = false;
       }; # Jellyfin
 
+      "music.blazma.st" = proxy {
+        port = 4533;
+        verifyCert = false;
+      }; # Navidrome
+
       "transmission.blazma.st" = proxy { port = 19091; };
 
       "bazarr.blazma.st" = proxy { port = 6767; };

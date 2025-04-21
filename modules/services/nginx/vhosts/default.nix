@@ -4,7 +4,7 @@
   imports = [
     ./grafana.nix
     ./matrix.nix
-    ./nixarr.nix
+    ./media.nix
     ./prometheus.nix
     ./pve.nix
 
