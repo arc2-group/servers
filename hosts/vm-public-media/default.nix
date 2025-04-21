@@ -2,6 +2,6 @@ args: {
   imports = [
     ../../modules/services/navidrome
     ../../modules/services/nixarr
-    (import ../../modules/disks/share.nix (args // { mountpoint = "/data"; }))
+    (import ../../modules/disks/data.nix (args // { mountpoint = "/data"; }))
   ];
 }
