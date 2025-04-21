@@ -39,6 +39,7 @@
       }; # Navidrome
 
       "transmission.blazma.st" = proxy { port = 19091; };
+      "slskd.blazma.st" = proxy { port = 15030; };
 
       "bazarr.blazma.st" = proxy { port = 6767; };
       "lidarr.blazma.st" = proxy { port = 8686; };
