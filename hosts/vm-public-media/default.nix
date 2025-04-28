@@ -20,4 +20,7 @@ args: {
       }
     )) # state + program data
   ];
+
+  # add coil user to media group
+  users.users.coil.extraGroups = [ "media" ];
 }
