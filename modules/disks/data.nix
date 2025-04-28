@@ -1,7 +1,7 @@
 {
   inputs,
   mountpoint ? "/data",
-  device ? "sdb",
+  device ? "/dev/disk/by-path/pci-0000:01:02.0-scsi-0:0:0:1-part1",
   ...
 }:
 {
