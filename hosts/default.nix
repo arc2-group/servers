@@ -56,7 +56,10 @@
     ];
   };
 
-  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  age.identityPaths = [
+    "/etc/ssh/ssh_host_ed25519_key"
+    "/root/ssh_host_ed25519_key"
+  ];
 
   nix =
     let

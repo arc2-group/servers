@@ -17,8 +17,8 @@ in
   system.activationScripts = {
     ssh-host-key = lib.mkIf use-host-key {
       text = ''
-        cp -rf ${config.age.secrets."${hostname}-host-key".path} /etc/ssh/ssh_host_ed25519_key
-        chmod 0600 /etc/ssh/ssh_host_ed25519_key
+        cp -rf ${config.age.secrets."${hostname}-host-key".path} /root/ssh_host_ed25519_key
+        chmod 0600 /root/ssh_host_ed25519_key
       '';
     };
   };
@@ -31,12 +31,17 @@ in
       PasswordAuthentication = false;
       PermitRootLogin = lib.mkDefault "no";
     };
-    hostKeys = lib.mkIf use-host-key [
-      {
+    hostKeys =
+      [
+        {
+          path = "/root/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ]
+      ++ lib.optional use-host-key {
         inherit (config.age.secrets."${hostname}-host-key") path;
         type = "ed25519";
-      }
-    ];
+      };
   };
   services.sshguard.enable = true;
 }
