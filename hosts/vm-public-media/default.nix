@@ -3,6 +3,7 @@ args: {
     ../../modules/services/navidrome
     ../../modules/services/nixarr
     ../../modules/services/slskd
+    ../../modules/services/tor-socks
 
     (import ../../modules/disks/data.nix (
       args
