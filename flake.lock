@@ -38,7 +38,7 @@
         "type": "github"
       }
     },
-    "conduwuit": {
+    "continuwuity": {
       "inputs": {
         "attic": [
           "blank"
@@ -63,17 +63,17 @@
         "rocksdb": "rocksdb"
       },
       "locked": {
-        "lastModified": 1744169934,
-        "narHash": "sha256-5YyHmPUUrXXrczWayji9327knihVTKnmjX+vX6+p6d0=",
-        "owner": "girlbossceo",
-        "repo": "conduwuit",
-        "rev": "d8311a5ff672fdc4729d956af5e3af8646b0670d",
-        "type": "github"
+        "lastModified": 1747858004,
+        "narHash": "sha256-QRF00Zcu4bZ6OXaQq4OYrrQgvW2qF/LMwSowHKIcdds=",
+        "ref": "refs/heads/main",
+        "rev": "2ccbd7d60b12c9c9d65bde027f4c974665022b28",
+        "revCount": 5220,
+        "type": "git",
+        "url": "https://forgejo.ellis.link/continuwuation/continuwuity"
       },
       "original": {
-        "owner": "girlbossceo",
-        "repo": "conduwuit",
-        "type": "github"
+        "type": "git",
+        "url": "https://forgejo.ellis.link/continuwuation/continuwuity"
       }
     },
     "crane": {
@@ -159,7 +159,7 @@
     "fenix": {
       "inputs": {
         "nixpkgs": [
-          "conduwuit",
+          "continuwuity",
           "nixpkgs"
         ],
         "rust-analyzer-src": "rust-analyzer-src"
@@ -403,7 +403,7 @@
       "inputs": {
         "agenix": "agenix",
         "blank": "blank",
-        "conduwuit": "conduwuit",
+        "continuwuity": "continuwuity",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "flake-utils": "flake-utils",

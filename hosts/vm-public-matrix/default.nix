@@ -1,6 +1,6 @@
 args: {
   imports = [
-    ../../modules/services/conduwuit
+    ../../modules/services/continuwuity
     (import ../../modules/disks/data.nix (args // { mountpoint = "/var"; }))
   ];
 }
