@@ -40,7 +40,7 @@ _: {
       };
     };
 
-    serviceDependencies = [ "conduwuit.service" ];
+    serviceDependencies = [ "continuwuity.service" ];
   };
 
   nixpkgs.config.permittedInsecurePackages = [

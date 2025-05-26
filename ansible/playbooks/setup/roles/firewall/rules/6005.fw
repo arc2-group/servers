@@ -6,6 +6,6 @@ log_level_in: nolog
 
 [RULES]
 
-IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 6167 -log nolog # accept conduwuit from ingress
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 6167 -log nolog # accept continuwuity from ingress
 
 GROUP gp-vm

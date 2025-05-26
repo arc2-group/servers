@@ -10,13 +10,12 @@ let
 in
 {
   imports = [
-    ./service.nix
     ./bridges
   ];
 
-  services.conduwuit = {
+  services.matrix-continuwuity = {
     enable = true;
-    package = inputs.conduwuit.packages.${platform}.default-debug;
+    package = inputs.continuwuity.packages.${platform}.default-debug;
 
     settings.global = {
       server_name = "blazma.st";
@@ -35,10 +34,11 @@ in
       registration_token_file = config.age.secrets.${registration-token}.path;
     };
   };
+
   age.secrets.${registration-token} = {
     file = ./registration-token.age;
-    owner = config.services.conduwuit.user;
-    inherit (config.services.conduwuit) group;
+    owner = config.services.matrix-continuwuity.user;
+    inherit (config.services.matrix-continuwuity) group;
   };
 
   networking.firewall = {

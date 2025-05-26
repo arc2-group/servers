@@ -39,7 +39,9 @@ in
   "modules/services/navidrome/secrets.env.age".publicKeys = admins ++ [ s.vm-public-media ];
   "modules/services/slskd/secrets.env.age".publicKeys = admins ++ [ s.vm-public-media ];
   "hosts/vm-public-matrix/ssh_host_ed25519_key.age".publicKeys = admins ++ [ s.vm-public-matrix ];
-  "modules/services/conduwuit/registration-token.age".publicKeys = admins ++ [ s.vm-public-matrix ];
+  "modules/services/continuwuity/registration-token.age".publicKeys = admins ++ [
+    s.vm-public-matrix
+  ];
   "hosts/vm-monitoring/ssh_host_ed25519_key.age".publicKeys = admins ++ [ s.vm-monitoring ];
   "modules/services/monitoring/grafana/admin-password.age".publicKeys = admins ++ [
     s.vm-monitoring
