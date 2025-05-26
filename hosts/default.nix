@@ -79,8 +79,7 @@
       # Nix store optimisations
       optimise = {
         automatic = true;
-        # missing in 24.11, add when updating to 25.05
-        # randomizedDelaySec = "45min";
+        randomizedDelaySec = "45min";
       };
       gc = {
         automatic = true;
