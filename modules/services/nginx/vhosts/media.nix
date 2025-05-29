@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   services.nginx.virtualHosts =
     let
@@ -15,7 +15,7 @@
         }:
         base {
           "/" = {
-            proxyPass = "http://vm-public-media:" + toString port + "/";
+            proxyPass = "http://vm-public-media:" + toString port;
             extraConfig = lib.mkIf verifyCert ''
               if ($ssl_client_verify != SUCCESS) {
                 return 403;
@@ -28,10 +28,25 @@
         };
     in
     {
-      "media.blazma.st" = proxy {
-        port = 18096;
-        verifyCert = false;
-      }; # Jellyfin
+      "media.blazma.st" =
+        lib.attrsets.recursiveUpdate
+          (proxy {
+            port = 18096;
+            verifyCert = false;
+          })
+          {
+            locations = {
+              "/" = {
+                extraConfig = ''
+                  proxy_buffering off;
+                '';
+              };
+              "/socket" = {
+                inherit (config.services.nginx.virtualHosts."media.blazma.st".locations."/") proxyPass;
+                proxyWebsockets = true;
+              };
+            };
+          }; # Navidrome; # Jellyfin
 
       "music.blazma.st" = proxy {
         port = 4533;
