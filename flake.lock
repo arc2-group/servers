@@ -63,11 +63,11 @@
         "rocksdb": "rocksdb"
       },
       "locked": {
-        "lastModified": 1748283410,
-        "narHash": "sha256-4sioCRHbGy92ZcJ1i6kWMy08kyoDBBsC1aQahN446H4=",
+        "lastModified": 1749936864,
+        "narHash": "sha256-1GBMgRtb5jYQWOJiRlosl02kqlzfQvAD/zm3MJm3aL0=",
         "ref": "refs/heads/main",
-        "rev": "3c44dccd6555d38c19e46ca8b5ad8acf49d99f52",
-        "revCount": 5229,
+        "rev": "6e16a6ef8f90ee4a1b2a92435475ddf7359ba837",
+        "revCount": 5236,
         "type": "git",
         "url": "https://forgejo.ellis.link/continuwuation/continuwuity"
       },
@@ -297,11 +297,11 @@
         "website-builder": "website-builder"
       },
       "locked": {
-        "lastModified": 1749021695,
-        "narHash": "sha256-vuQ/Bw4xwMqKqhbPp90Y1XyC3+mdh37nN3P+gAx3U2Y=",
+        "lastModified": 1750027183,
+        "narHash": "sha256-a7g4Ord2Clf3bhli1S77zoV9/2dWkLc5JRpxKXXiz3c=",
         "owner": "rasmus-kirk",
         "repo": "nixarr",
-        "rev": "308818029caaefc969bbdb70afa9528a68635d45",
+        "rev": "4a4f2f761d2d7b7864d54577ac93df34ff0d209d",
         "type": "github"
       },
       "original": {
@@ -328,11 +328,11 @@
     },
     "nixpkgs_latest": {
       "locked": {
-        "lastModified": 1749237914,
-        "narHash": "sha256-N5waoqWt8aMr/MykZjSErOokYH6rOsMMXu3UOVH5kiw=",
+        "lastModified": 1749857119,
+        "narHash": "sha256-tG5xUn3hFaPpAHYIvr2F88b+ovcIO5k1HqajFy7ZFPM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "70c74b02eac46f4e4aa071e45a6189ce0f6d9265",
+        "rev": "5f4f306bea96741f1588ea4f450b2a2e29f42b98",
         "type": "github"
       },
       "original": {
@@ -344,11 +344,11 @@
     },
     "nixpkgs_unstable": {
       "locked": {
-        "lastModified": 1749285348,
-        "narHash": "sha256-frdhQvPbmDYaScPFiCnfdh3B/Vh81Uuoo0w5TkWmmjU=",
+        "lastModified": 1749794982,
+        "narHash": "sha256-Kh9K4taXbVuaLC0IL+9HcfvxsSUx8dPB5s5weJcc9pc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3e3afe5174c561dee0df6f2c2b2236990146329f",
+        "rev": "ee930f9755f58096ac6e8ca94a1887e0534e2d81",
         "type": "github"
       },
       "original": {
@@ -369,11 +369,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747372754,
-        "narHash": "sha256-2Y53NGIX2vxfie1rOW0Qb86vjRZ7ngizoo+bnXU9D9k=",
+        "lastModified": 1749636823,
+        "narHash": "sha256-WUaIlOlPLyPgz9be7fqWJA5iG6rHcGRtLERSCfUDne4=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "80479b6ec16fefd9c1db3ea13aeb038c60530f46",
+        "rev": "623c56286de5a3193aa38891a6991b28f9bab056",
         "type": "github"
       },
       "original": {
@@ -516,11 +516,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748552643,
-        "narHash": "sha256-UI3dlA/6WOitW3ejPhwYvB/yxrVWpdTmh96Hl8CEUis=",
+        "lastModified": 1750027175,
+        "narHash": "sha256-6XM+hg3Zal2EqeDmTSpFyrvYLgM81BhFtLjA93nYA6Q=",
         "owner": "rasmus-kirk",
         "repo": "website-builder",
-        "rev": "f399b9c89d45a0150ce6230c6df23f62f9c3cf89",
+        "rev": "3825733413b78fe6cd4498cef8b339ae1e0a6a0e",
         "type": "github"
       },
       "original": {
