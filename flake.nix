@@ -116,7 +116,8 @@
               markdownlint.enable = true;
             };
           };
-        } // (inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
+        }
+        // (inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
 
         devShells.default = pkgs.mkShell {
           buildInputs = self.checks.${system}.pre-commit.enabledPackages;
