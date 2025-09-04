@@ -14,7 +14,7 @@ _: {
           proxy_send_timeout 15m;
           keepalive_timeout 15m;
 
-          # match max upload size with conduwuit settings
+          # match max upload size with continuwuity settings
           client_max_body_size 100M;
         '';
       };

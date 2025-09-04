@@ -2,9 +2,6 @@
 {
   imports = [
     inputs.nixarr.nixosModules.default
-
-    # recyclarr from unstable, TODO: remove when updating to 25.05
-    (inputs.nixpkgs_unstable + "/nixos/modules/services/misc/recyclarr.nix")
   ];
 
   nixarr = {

@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs_latest.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs_latest.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs_unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     agenix.url = "github:ryantm/agenix";
@@ -17,8 +17,8 @@
 
     blank.url = "github:divnix/blank";
 
-    conduwuit = {
-      url = "github:girlbossceo/conduwuit";
+    continuwuity = {
+      url = "git+https://forgejo.ellis.link/continuwuation/continuwuity?ref=refs/tags/v0.5.0-rc.6";
       inputs = {
         attic.follows = "blank";
         cachix.follows = "blank";
@@ -40,11 +40,9 @@
   nixConfig = {
     extra-substituters = [
       "https://arc2-group.cachix.org"
-      "https://attic.kennel.juneis.dog/conduwuit"
     ];
     extra-trusted-public-keys = [
       "arc2-group.cachix.org-1:SfZ4Amg/VroYhmCRNX0mQcFEWGCFWvn31s3gwEaU/2U="
-      "conduwuit:BbycGUgTISsltcmH0qNjFR9dbrQNYgdIAcmViSGoVTE="
     ];
   };
 
@@ -118,7 +116,8 @@
               markdownlint.enable = true;
             };
           };
-        } // (inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
+        }
+        // (inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
 
         devShells.default = pkgs.mkShell {
           buildInputs = self.checks.${system}.pre-commit.enabledPackages;

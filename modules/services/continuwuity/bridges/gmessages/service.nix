@@ -1,33 +1,32 @@
-# From https://github.com/NixOS/nixpkgs/pull/355025
-# TODO: remove when merged
+# TODO: remove when added to nixpkgs
 {
   config,
   pkgs,
   lib,
   ...
 }:
-# This module is an adaptation of the module for mautrix-meta in the same directory
 let
   settingsFormat = pkgs.formats.yaml { };
 
-  cfg = config.services.mautrix-discord;
+  cfg = config.services.mautrix-gmessages;
 
   fullDataDir = cfg: "/var/lib/${cfg.dataDir}";
 
   settingsFile = cfg: "${fullDataDir cfg}/config.yaml";
-  settingsFileUnsubstituted = cfg: settingsFormat.generate "mautrix-discord-config.yaml" cfg.settings;
+  settingsFileUnsubstituted =
+    cfg: settingsFormat.generate "mautrix-gmessages-config.yaml" cfg.settings;
 in
 {
   options = {
-    services.mautrix-discord = {
+    services.mautrix-gmessages = {
 
-      package = lib.mkPackageOption pkgs "mautrix-discord" { };
+      package = lib.mkPackageOption pkgs "mautrix-gmessages" { };
 
-      enable = lib.mkEnableOption "Mautrix-Discord, a Matrix <-> Discord hybrid puppeting/relaybot bridge";
+      enable = lib.mkEnableOption "Mautrix-gmessages, a Matrix <-> gmessages hybrid puppeting/relaybot bridge";
 
       dataDir = lib.mkOption {
         type = lib.types.str;
-        default = "mautrix-discord";
+        default = "mautrix-gmessages";
         description = ''
           Path to the directory with database, registration, and other data for the bridge service.
           This path is relative to `/var/lib`, it cannot start with `../` (it cannot be outside of `/var/lib`).
@@ -65,47 +64,47 @@ in
           appservice = {
             id = "";
 
-            database = {
-              type = "sqlite3-fk-wal";
-              uri = "file:${fullDataDir cfg}/mautrix-discord.db?_txlock=immediate";
-            };
-
             bot = {
               username = "";
             };
 
             hostname = "localhost";
-            port = 29334;
+            port = 29336;
             address = "http://${cfg.settings.appservice.hostname}:${toString cfg.settings.appservice.port}";
           };
 
+          database = {
+            type = "sqlite3-fk-wal";
+            uri = "file:${fullDataDir cfg}/mautrix-gmessages.db?_txlock=immediate";
+          };
+
           bridge = {
-            # Enable encryption by default to make the bridge more secure
-            encryption = {
-              allow = true;
-              default = true;
-              require = true;
+            permissions = { };
+          };
 
-              # Recommended options from mautrix documentation
-              # for additional security.
-              delete_keys = {
-                dont_store_outbound = true;
-                ratchet_on_decrypt = true;
-                delete_fully_used_on_decrypt = true;
-                delete_prev_on_new_session = true;
-                delete_on_device_delete = true;
-                periodically_delete_expired = true;
-                delete_outdated_inbound = true;
-              };
+          # Enable encryption by default to make the bridge more secure
+          encryption = {
+            allow = true;
+            default = true;
+            require = true;
 
-              verification_levels = {
-                receive = "cross-signed-tofu";
-                send = "cross-signed-tofu";
-                share = "cross-signed-tofu";
-              };
+            # Recommended options from mautrix documentation
+            # for additional security.
+            delete_keys = {
+              dont_store_outbound = true;
+              ratchet_on_decrypt = true;
+              delete_fully_used_on_decrypt = true;
+              delete_prev_on_new_session = true;
+              delete_on_device_delete = true;
+              periodically_delete_expired = true;
+              delete_outdated_inbound = true;
             };
 
-            permissions = { };
+            verification_levels = {
+              receive = "cross-signed-tofu";
+              send = "cross-signed-tofu";
+              share = "cross-signed-tofu";
+            };
           };
 
           logging = {
@@ -117,69 +116,6 @@ in
             };
           };
         };
-        defaultText = ''
-          {
-            homeserver = {
-              software = "standard";
-              address = "https://''${cfg.settings.homeserver.domain}";
-            };
-
-            appservice = {
-              database = {
-                type = "sqlite3-fk-wal";
-                uri = "file:''${fullDataDir cfg}/mautrix-discord.db?_txlock=immediate";
-              };
-
-              hostname = "localhost";
-              port = 29334;
-              address = "http://''${cfg.settings.appservice.hostname}:''${toString cfg.settings.appservice.port}";
-            };
-
-            bridge = {
-              # Require encryption by default to make the bridge more secure
-              encryption = {
-                allow = true;
-                default = true;
-                require = true;
-
-                # Recommended options from mautrix documentation
-                # for optimal security.
-                delete_keys = {
-                  dont_store_outbound = true;
-                  ratchet_on_decrypt = true;
-                  delete_fully_used_on_decrypt = true;
-                  delete_prev_on_new_session = true;
-                  delete_on_device_delete = true;
-                  periodically_delete_expired = true;
-                  delete_outdated_inbound = true;
-                };
-
-                verification_levels = {
-                  receive = "cross-signed-tofu";
-                  send = "cross-signed-tofu";
-                  share = "cross-signed-tofu";
-                };
-              };
-            };
-
-            logging = {
-              min_level = "info";
-              writers = lib.singleton {
-                type = "stdout";
-                format = "pretty-colored";
-                time_format = " ";
-              };
-            };
-          };
-        '';
-        description = ''
-          {file}`config.yaml` configuration as a Nix attribute set.
-          Configuration options should match those described in
-          [example-config.yaml](https://github.com/mautrix/discord/blob/main/example-config.yaml).
-
-          Secret tokens should be specified using {option}`environmentFile`
-          instead
-        '';
       };
 
       environmentFile = lib.mkOption {
@@ -187,23 +123,24 @@ in
         default = null;
         description = ''
           File containing environment variables to substitute when copying the configuration
-          out of Nix store to the `services.mautrix-discord.dataDir`.
+          out of Nix store to the `services.mautrix-gmessages.dataDir`.
 
           Can be used for storing the secrets without making them available in the Nix store.
 
-          For example, you can set `services.mautrix-discord.settings.appservice.as_token = "$MAUTRIX_DISCORD_APPSERVICE_AS_TOKEN"`
-          and then specify `MAUTRIX_DISCORD_APPSERVICE_AS_TOKEN="{token}"` in the environment file.
+          For example, you can set `services.mautrix-gmessages.settings.appservice.as_token = "$MAUTRIX_gmessages_APPSERVICE_AS_TOKEN"`
+          and then specify `MAUTRIX_gmessages_APPSERVICE_AS_TOKEN="{token}"` in the environment file.
           This value will get substituted into the configuration file as as token.
         '';
       };
 
       serviceDependencies = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default =
-          [ cfg.registrationServiceUnit ]
-          ++ (lib.lists.optional config.services.matrix-synapse.enable config.services.matrix-synapse.serviceUnit)
-          ++ (lib.lists.optional config.services.matrix-conduit.enable "matrix-conduit.service")
-          ++ (lib.lists.optional config.services.dendrite.enable "dendrite.service");
+        default = [
+          cfg.registrationServiceUnit
+        ]
+        ++ (lib.lists.optional config.services.matrix-synapse.enable config.services.matrix-synapse.serviceUnit)
+        ++ (lib.lists.optional config.services.matrix-conduit.enable "matrix-conduit.service")
+        ++ (lib.lists.optional config.services.dendrite.enable "dendrite.service");
 
         defaultText = ''
           [ cfg.registrationServiceUnit ] ++
@@ -235,7 +172,7 @@ in
           The registration service that generates the registration file.
 
           Systemd unit (a service or a target) for other services to depend on if they
-          need to be started after mautrix-discord registration service.
+          need to be started after mautrix-gmessages registration service.
 
           This option is useful as the actual parent unit for all matrix-synapse processes
           changes when configuring workers.
@@ -250,40 +187,40 @@ in
         assertion = cfg.settings.homeserver.domain != "" && cfg.settings.homeserver.address != "";
         message = ''
           The options with information about the homeserver:
-          `services.mautrix-discord.settings.homeserver.domain` and
-          `services.mautrix-discord.settings.homeserver.address` have to be set.
+          `services.mautrix-gmessages.settings.homeserver.domain` and
+          `services.mautrix-gmessages.settings.homeserver.address` have to be set.
         '';
       }
       {
         assertion = cfg.settings.bridge.permissions != { };
         message = ''
-          The option `services.mautrix-discord.settings.bridge.permissions` has to be set.
+          The option `services.mautrix-gmessages.settings.bridge.permissions` has to be set.
         '';
       }
       {
         assertion = cfg.settings.appservice.id != "";
         message = ''
-          The option `services.mautrix-discord.settings.appservice.id` has to be set.
+          The option `services.mautrix-gmessages.settings.appservice.id` has to be set.
         '';
       }
       {
         assertion = cfg.settings.appservice.bot.username != "";
         message = ''
-          The option `services.mautrix-discord.settings.appservice.bot.username` has to be set.
+          The option `services.mautrix-gmessages.settings.appservice.bot.username` has to be set.
         '';
       }
     ];
 
     users = {
-      users.mautrix-discord = {
+      users.mautrix-gmessages = {
         isSystemUser = true;
-        group = "mautrix-discord";
-        extraGroups = [ "mautrix-discord-registration" ];
-        description = "Mautrix-Discord bridge user";
+        group = "mautrix-gmessages";
+        extraGroups = [ "mautrix-gmessages-registration" ];
+        description = "Mautrix-gmessages bridge user";
       };
 
-      groups.mautrix-discord = { };
-      groups.mautrix-discord-registration = {
+      groups.mautrix-gmessages = { };
+      groups.mautrix-gmessages-registration = {
         members = lib.lists.optional config.services.matrix-synapse.enable "matrix-synapse";
       };
     };
@@ -298,8 +235,8 @@ in
         after = [ cfg.registrationServiceUnit ];
       };
 
-      mautrix-discord-registration = {
-        description = "Mautrix-Discord registration generation service";
+      mautrix-gmessages-registration = {
+        description = "Mautrix-gmessages registration generation service";
 
         path = [
           pkgs.yq
@@ -338,7 +275,7 @@ in
           cp '${settingsFile cfg}' '${settingsFile cfg}.tmp'
 
           echo "Generating registration file"
-          mautrix-discord \
+          mautrix-gmessages \
             --generate-registration \
             --config='${settingsFile cfg}.tmp' \
             --registration='${cfg.registrationFile}'
@@ -367,7 +304,7 @@ in
 
           umask $old_umask
 
-          chown :mautrix-discord-registration '${cfg.registrationFile}'
+          chown :mautrix-gmessages-registration '${cfg.registrationFile}'
           chmod 640 '${cfg.registrationFile}'
         '';
 
@@ -375,8 +312,8 @@ in
           Type = "oneshot";
           UMask = 27;
 
-          User = "mautrix-discord";
-          Group = "mautrix-discord";
+          User = "mautrix-gmessages";
+          Group = "mautrix-gmessages";
 
           SystemCallFilter = [ "@system-service" ];
 
@@ -391,8 +328,8 @@ in
         restartTriggers = [ (settingsFileUnsubstituted cfg) ];
       };
 
-      mautrix-discord = {
-        description = "Mautrix-Discord bridge";
+      mautrix-gmessages = {
+        description = "Mautrix-gmessages bridge";
         wantedBy = [ "multi-user.target" ];
         wants = [ "network-online.target" ] ++ cfg.serviceDependencies;
         after = [ "network-online.target" ] ++ cfg.serviceDependencies;
@@ -400,8 +337,8 @@ in
         serviceConfig = {
           Type = "simple";
 
-          User = "mautrix-discord";
-          Group = "mautrix-discord";
+          User = "mautrix-gmessages";
+          Group = "mautrix-gmessages";
           PrivateUsers = true;
 
           LockPersonality = true;
@@ -439,26 +376,26 @@ in
         restartTriggers = [ (settingsFileUnsubstituted cfg) ];
       };
     };
-    services.mautrix-discord = {
-      serviceUnit = "mautrix-discord.service";
-      registrationServiceUnit = "mautrix-discord-registration.service";
-      registrationFile = (fullDataDir cfg) + "/discord-registration.yaml";
+    services.mautrix-gmessages = {
+      serviceUnit = "mautrix-gmessages.service";
+      registrationServiceUnit = "mautrix-gmessages-registration.service";
+      registrationFile = (fullDataDir cfg) + "/gmessages-registration.yaml";
       settings =
         let
           inherit (lib.modules) mkDefault;
         in
         {
           bridge = {
-            username_template = mkDefault "discord_{{.}}";
+            username_template = mkDefault "gmessages_{{.}}";
           };
 
           appservice = {
-            id = mkDefault "discord";
-            port = mkDefault 29334;
+            id = mkDefault "gmessages";
+            port = mkDefault 29336;
             bot = {
-              username = mkDefault "discordbot";
-              displayname = mkDefault "Discord bridge bot";
-              avatar = mkDefault "mxc://maunium.net/nIdEykemnwdisvHbpxflpDlC";
+              username = mkDefault "gmessagesbot";
+              displayname = mkDefault "Google Messages bridge bot";
+              avatar = mkDefault "mxc://maunium.net/yGOdcrJcwqARZqdzbfuxfhzb";
             };
           };
         };
