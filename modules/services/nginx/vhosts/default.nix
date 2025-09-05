@@ -7,6 +7,7 @@
     ./media.nix
     ./prometheus.nix
     ./pve.nix
+    ./qrp.nix
 
     # external
     ./ltvg.nix
