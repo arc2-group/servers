@@ -29,7 +29,7 @@ in
     openFirewall = true;
     settings = {
       PasswordAuthentication = false;
-      PermitRootLogin = lib.mkForce "no";
+      PermitRootLogin = "no";
     };
     hostKeys = lib.mkIf use-host-key [
       {
