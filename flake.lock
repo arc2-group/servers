@@ -214,6 +214,29 @@
         "type": "github"
       }
     },
+    "gancio-plugin-discord": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs_latest"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750699585,
+        "narHash": "sha256-R9o5bU9mVHCLcxhCv5jTz334CVG9D/9rWdeFVGVVR1Q=",
+        "ref": "refs/heads/main",
+        "rev": "34039a45799819e6afa169746abc903e165c620f",
+        "revCount": 4,
+        "type": "git",
+        "url": "https://git.gay/QueerResourcesRiga/gancio-plugin-discord"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.gay/QueerResourcesRiga/gancio-plugin-discord"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -408,6 +431,7 @@
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "flake-utils": "flake-utils",
+        "gancio-plugin-discord": "gancio-plugin-discord",
         "nixarr": "nixarr",
         "nixpkgs_latest": "nixpkgs_latest",
         "nixpkgs_unstable": "nixpkgs_unstable",

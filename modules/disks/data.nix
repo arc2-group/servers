@@ -1,7 +1,7 @@
 {
   inputs,
   mountpoint ? "/data",
-  device ? "sdb",
+  device ? "/dev/sdb",
   ...
 }:
 {
