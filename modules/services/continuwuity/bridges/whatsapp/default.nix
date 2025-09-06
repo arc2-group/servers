@@ -22,6 +22,29 @@ _: {
           max_initial_conversations = 10;
         };
       };
+      matrix = {
+        delivery_receipts = true;
+      };
+      backfill = {
+        enable = true;
+      };
+      encryption = {
+        allow = true;
+        default = true;
+        delete_keys = {
+          dont_store_outbound = true;
+          ratchet_on_decrypt = true;
+          delete_fully_used_on_decrypt = true;
+          delete_prev_on_new_session = true;
+          delete_on_device_delete = true;
+          periodically_delete_expired = true;
+        };
+        verification_levels = {
+          receive = "cross-signed-tofu";
+          send = "cross-signed-tofu";
+          share = "cross-signed-tofu";
+        };
+      };
     };
 
     serviceDependencies = [ "continuwuity.service" ];
