@@ -55,7 +55,6 @@
   outputs =
     {
       self,
-      nixpkgs_unstable,
       deploy-rs,
       ...
     }@inputs:
