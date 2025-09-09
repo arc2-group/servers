@@ -12,7 +12,8 @@
       inputs.gancio-plugin-discord.packages.${platform}.default
     ];
     settings = {
-      hostname = "events.blazma.st";
+      hostname = "pasakumi.kviriem.lv";
+      baseurl = "https://pasakumi.kviriem.lv"; # manually set https because enableACME = false
     };
 
     nginx = {
