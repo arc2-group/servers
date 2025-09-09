@@ -1,6 +1,6 @@
 _: {
   services.nginx.virtualHosts = {
-    "events.blazma.st" = {
+    "pasakumi.kviriem.lv" = {
       forceSSL = true;
       enableACME = true;
 
