@@ -41,6 +41,7 @@
           send = "cross-signed-tofu";
           share = "cross-signed-tofu";
         };
+        pickle_key = "maunium.net/go/mautrix-whatsapp";
       };
       network = {
         history_sync = {
