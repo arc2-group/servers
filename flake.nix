@@ -18,7 +18,7 @@
     blank.url = "github:divnix/blank";
 
     continuwuity = {
-      url = "git+https://forgejo.ellis.link/continuwuation/continuwuity";
+      url = "github:arc2-group/continuwuity";
       inputs = {
         attic.follows = "blank";
         cachix.follows = "blank";

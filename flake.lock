@@ -58,17 +58,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1758690226,
-        "narHash": "sha256-WkmGI101S+NdPoF4KE90UZ4tGQBCqP1q8VNBxN4fJ68=",
-        "ref": "refs/heads/main",
-        "rev": "472e1fee17d761068aec2fa2d66f21ef22b0f1fd",
-        "revCount": 5592,
-        "type": "git",
-        "url": "https://forgejo.ellis.link/continuwuation/continuwuity"
+        "lastModified": 1758740800,
+        "narHash": "sha256-m1X+xCFH4J1RatSDp8vVhxLTMjrxK90KU8iKlkQuCtc=",
+        "owner": "arc2-group",
+        "repo": "continuwuity",
+        "rev": "ace09b88cb166434fad68581f062ff528c8d0c88",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://forgejo.ellis.link/continuwuation/continuwuity"
+        "owner": "arc2-group",
+        "repo": "continuwuity",
+        "type": "github"
       }
     },
     "crane": {
