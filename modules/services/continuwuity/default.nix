@@ -33,6 +33,10 @@ in
       default_room_version = "11";
       registration_token_file = config.age.secrets.${registration-token}.path;
     };
+
+    extraEnvironment = {
+      RUST_BACKTRACE = "yes";
+    };
   };
 
   age.secrets.${registration-token} = {
