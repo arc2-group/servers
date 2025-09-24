@@ -18,10 +18,11 @@
     blank.url = "github:divnix/blank";
 
     continuwuity = {
-      url = "git+https://forgejo.ellis.link/continuwuation/continuwuity";
+      url = "git+https://forgejo.ellis.link/continuwuation/continuwuity?ref=refs/tags/v0.5.0-rc.6";
       inputs = {
         attic.follows = "blank";
         cachix.follows = "blank";
+        complement.follows = "blank";
         flake-compat.follows = "blank";
         flake-utils.follows = "flake-utils";
       };
