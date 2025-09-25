@@ -58,11 +58,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1758690226,
-        "narHash": "sha256-WkmGI101S+NdPoF4KE90UZ4tGQBCqP1q8VNBxN4fJ68=",
+        "lastModified": 1758788886,
+        "narHash": "sha256-oKaXfbQCwV56ufqhr+2DsZU7hOqaLx4xy2QO4J5Qlnk=",
         "ref": "refs/heads/main",
-        "rev": "472e1fee17d761068aec2fa2d66f21ef22b0f1fd",
-        "revCount": 5592,
+        "rev": "92fffe9c8297dba568a482c0230e81f69c72766a",
+        "revCount": 5598,
         "type": "git",
         "url": "https://forgejo.ellis.link/continuwuation/continuwuity"
       },
