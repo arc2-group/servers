@@ -1,32 +1,33 @@
-{ hostname, config, ... }:
+{
+  hostname,
+  config,
+  inputs,
+  ...
+}:
 let
   secrets = "${hostname}-navidrome-secrets";
 in
 {
   services.navidrome = {
     enable = true;
+    package = inputs.nixpkgs_unstable.navidrome;
     openFirewall = true;
     group = "media";
     settings = {
       MusicFolder = "/media/library/music";
       DataFolder = "/var/navidrome";
       Address = "[::]";
-
-      # someone is against setting this to false
-      # EnableStarRating = false;
-      # TODO update this someone
-      # navidrome devs did not cook with these things
-      # https://github.com/navidrome/navidrome/discussions/3463
       #PasswordEncryptionKey = "";
       #Prometheus.Enabled = "";
       #Prometheus.MetricsPath = "";
       ScanSchedule = "@every 30m";
+
+      EnableSharing = true;
+      Subsonic.ArtistParticipations = true;
+
       # useful for Japanese
       SearchFullString = true;
       SubsonicArtistParticipations = true;
-      # TODO
-      #UILoginBackgroundUrl = "";
-
     };
   };
 
