@@ -137,6 +137,7 @@
             nixos-anywhere
             nixos-generators
             inputs.deploy-rs.outputs.packages.${system}.deploy-rs
+            cachix
           ];
         };
       }
