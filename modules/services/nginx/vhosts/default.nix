@@ -11,6 +11,7 @@
 
     # external
     ./ltvg.nix
+    ./em-haos.nix
   ];
 
   services.nginx.virtualHosts."_" = {
