@@ -26,6 +26,12 @@
 
   services.flaresolverr.enable = true;
 
+  # configure transmission to allow remote control webui
+  services.transmission.settings = {
+    rpc-host-whitelist-enabled = true;
+    rpc-host-whitelist = "transmission.blazma.st";
+  };
+
   # Sonarr runs dotnet 6...
   nixpkgs.config.permittedInsecurePackages = [
     "aspnetcore-runtime-6.0.36"
