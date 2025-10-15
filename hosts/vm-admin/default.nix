@@ -23,9 +23,7 @@
     script = ''
       #!/usr/bin/env bash
       echo Cloning repo...
-      ${pkgs.git}/bin/git clone https://github.com/arc2-group/servers.git /home/${username}/servers ||
-      echo Pulling already cloned repo...
-      cd /home/${username}/servers && ${pkgs.git}/bin/git pull
+      ${pkgs.git}/bin/git clone https://github.com/arc2-group/servers.git /home/${username}/servers || true
     '';
   };
 
