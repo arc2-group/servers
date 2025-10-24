@@ -1,5 +1,7 @@
 args: {
   imports = [
+    ../../modules/services/etesync
+
     (import ../../modules/disks/data.nix (
       args
       // {

@@ -2,6 +2,7 @@
 {
   # TODO: load all vhosts in the direcotry automatically
   imports = [
+    ./etesync.nix
     ./grafana.nix
     ./matrix.nix
     ./media.nix
