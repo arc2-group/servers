@@ -15,6 +15,11 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
     nixarr.inputs.nixpkgs.follows = "nixpkgs_latest";
 
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs_latest";
+    };
+
     blank.url = "github:divnix/blank";
 
     continuwuity = {

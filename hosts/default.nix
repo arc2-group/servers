@@ -13,6 +13,7 @@
 {
   imports = [
     inputs.agenix.nixosModules.default
+    inputs.comin.nixosModules.comin
     ./${hostname}
     ../modules/cache
     ../modules/cloud-init
@@ -97,21 +98,27 @@
 
   networking.hostName = hostname;
 
-  # VMs don't have passwords, need to auto login to access via tty
-  services.getty.autologinUser = lib.mkDefault username;
+  services = {
+    # VMs don't have passwords, need to auto login to access via tty
+    getty.autologinUser = lib.mkDefault username;
 
-  # Apply configurations from Git
-  system.autoUpgrade = {
-    enable = true;
-    dates = "Tue,Thu 10:00";
-    randomizedDelaySec = "45min";
-    persistent = true;
-    flake = "github:arc2-group/servers#${hostname}";
-    flags = [ "--accept-flake-config" ];
+    # Apply configurations from Git
+    comin = {
+      enable = true;
+      inherit hostname;
+      gpgPublicKeyPaths = [ "${../lib/keys/WhoDis2372.pub}" ];
+      remotes = [
+        {
+          name = "origin";
+          url = "https://github.com/arc2-group/servers.git";
+          branches.main.name = "main";
+        }
+      ];
+    };
+
+    # Enable QEMU Guest agent (for VMs)
+    qemuGuest.enable = true;
   };
-
-  # Enable QEMU Guest agent (for VMs)
-  services.qemuGuest.enable = true;
 
   # zram
   zramSwap = {
