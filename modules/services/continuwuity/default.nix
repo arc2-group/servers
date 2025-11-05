@@ -15,7 +15,7 @@ in
 
   services.matrix-continuwuity = {
     enable = true;
-    package = inputs.continuwuity.packages.${platform}.default-debug;
+    package = inputs.continuwuity.packages.${platform}.default;
 
     settings.global = {
       server_name = "blazma.st";

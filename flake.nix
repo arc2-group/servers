@@ -22,10 +22,7 @@
     continuwuity = {
       url = "git+https://forgejo.ellis.link/continuwuation/continuwuity";
       inputs = {
-        attic.follows = "blank";
-        cachix.follows = "blank";
         flake-compat.follows = "blank";
-        flake-utils.follows = "flake-utils";
       };
     };
 
