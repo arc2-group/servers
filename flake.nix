@@ -6,9 +6,6 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs_latest";
 
-    deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs_latest";
-
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs_latest";
 
@@ -59,7 +56,6 @@
   outputs =
     {
       self,
-      deploy-rs,
       ...
     }@inputs:
     let
@@ -74,21 +70,6 @@
         builtins.attrNames entries
       );
       vms = builtins.filter (name: builtins.substring 0 3 name == "vm-") configurations;
-
-      # Generate deploy-rs config
-      deployNodes = builtins.listToAttrs (
-        map (name: {
-          inherit name;
-          value = {
-            hostname = name;
-            profiles.system = {
-              path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${name};
-              user = "root";
-              sshUser = vmUsername;
-            };
-          };
-        }) vms
-      );
     in
     {
       nixosConfigurations = builtins.listToAttrs (
@@ -101,8 +82,6 @@
           };
         }) configurations
       );
-
-      deploy.nodes = deployNodes;
     }
     // inputs.flake-utils.lib.eachDefaultSystem (
       system:
@@ -126,7 +105,12 @@
             };
           };
         }
-        // (inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
+        // builtins.listToAttrs (
+          map (name: {
+            name = "host-${name}";
+            value = self.nixosConfigurations.${name}.config.system.build.toplevel;
+          }) configurations
+        );
 
         devShells.default = pkgs.mkShell {
           buildInputs = self.checks.${system}.pre-commit.enabledPackages;
@@ -141,7 +125,6 @@
             ansible
             nixos-anywhere
             nixos-generators
-            inputs.deploy-rs.outputs.packages.${system}.deploy-rs
             cachix
           ];
         };
