@@ -7,5 +7,6 @@ log_level_in: nolog
 [RULES]
 
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8001 -log nolog # etebase
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8222 -log nolog # vaultwarden
 
 GROUP gp-vm

@@ -46,5 +46,8 @@ in
   "modules/services/monitoring/grafana/admin-password.age".publicKeys = admins ++ [
     s.vm-monitoring
   ];
+  "modules/services/vaultwarden/config.env.age".publicKeys = admins ++ [
+    s.vm-public-cloud
+  ];
 }
 // secrets

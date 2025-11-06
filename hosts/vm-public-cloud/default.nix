@@ -1,6 +1,7 @@
 args: {
   imports = [
     ../../modules/services/etesync
+    ../../modules/services/vaultwarden
 
     (import ../../modules/disks/data.nix (
       args

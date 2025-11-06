@@ -9,6 +9,7 @@
     ./prometheus.nix
     ./pve.nix
     ./qrp.nix
+    ./vaultwarden.nix
 
     # external
     ./ltvg.nix
