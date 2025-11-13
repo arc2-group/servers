@@ -32,6 +32,12 @@ in
       log = "debug";
       default_room_version = "11";
       registration_token_file = config.age.secrets.${registration-token}.path;
+      well_known = {
+        client = "https://matrix.blazma.st";
+        server = "matrix.blazma.st:443";
+        support_mxid = "@spur:blazma.st";
+        support_email = "admin+matrix@blazma.st";
+      };
     };
   };
 

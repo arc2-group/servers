@@ -19,5 +19,14 @@ _: {
         '';
       };
     };
+
+    "blazma.st" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/.well-known/matrix/" = {
+        proxyPass = "http://vm-public-matrix:6167";
+      };
+    };
   };
 }
