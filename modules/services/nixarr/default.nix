@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     inputs.nixarr.nixosModules.default
@@ -30,6 +35,7 @@
   services.transmission.settings = {
     rpc-host-whitelist-enabled = true;
     rpc-host-whitelist = "transmission.blazma.st";
+    port-forwarding-enabled = lib.mkForce true;
   };
 
   # Sonarr runs dotnet 6...
@@ -59,8 +65,9 @@
   };
   networking.firewall = {
     allowedTCPPorts = [
-      18096
-      19091
+      18096 # Jellyfin
+      19091 # slskd Web UI
+      34789 # Transmission BitTorrent
     ];
   };
 }

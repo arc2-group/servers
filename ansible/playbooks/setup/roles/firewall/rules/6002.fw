@@ -7,7 +7,9 @@ log_level_in: nolog
 [RULES]
 
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 18096 -log nolog # Jellyfin
-IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 19091 -log nolog # Transmission
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 19091 -log nolog # Transmission Web UI
+IN ACCEPT -p tcp -dport 34789 -log nolog # Transmission BitTorrent TCP
+IN ACCEPT -p udp -dport 34789 -log nolog # Transmission BitTorrent UDP
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 6767 -log nolog # Bazaar
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8686 -log nolog # Lidarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 9696 -log nolog # Prowlarr
