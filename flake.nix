@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs_latest.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs_latest.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs_unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     agenix.url = "github:ryantm/agenix";

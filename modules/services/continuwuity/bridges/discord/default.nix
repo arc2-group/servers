@@ -1,8 +1,4 @@
 _: {
-  imports = [
-    ./service.nix
-  ];
-
   services.mautrix-discord = {
     enable = true;
     registerToSynapse = false;

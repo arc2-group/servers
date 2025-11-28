@@ -1,13 +1,4 @@
-{ inputs, ... }:
-{
-  # https://github.com/NixOS/nixpkgs/pull/420722
-  disabledModules = [
-    "services/matrix/mautrix-whatsapp.nix"
-  ];
-  imports = [
-    "${inputs.nixpkgs_unstable}/nixos/modules/services/matrix/mautrix-whatsapp.nix"
-  ];
-
+_: {
   services.mautrix-whatsapp = {
     enable = true;
     registerToSynapse = false;
