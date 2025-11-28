@@ -30,7 +30,10 @@
           vms
           ;
       };
-      modules = [ ../hosts ];
+      modules = [
+        ../hosts
+        ./unfree.nix
+      ];
     };
 
   forAllSystems = inputs.nixpkgs_latest.lib.genAttrs [
