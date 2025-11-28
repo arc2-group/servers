@@ -7,6 +7,7 @@
     ./matrix.nix
     ./media.nix
     ./pve.nix
+    ./qminecraft.nix
     ./qrp.nix
     ./uptimekuma.nix
     ./vaultwarden.nix

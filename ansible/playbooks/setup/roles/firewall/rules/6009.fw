@@ -1,0 +1,14 @@
+[OPTIONS]
+
+policy_in: DROP
+enable: 1
+log_level_in: nolog
+
+[RULES]
+
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8100 -log nolog
+IN ACCEPT -p tcp -dport 35585 -log nolog
+IN ACCEPT -p udp -dport 35585 -log nolog
+
+GROUP gp-vm
+
