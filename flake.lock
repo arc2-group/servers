@@ -225,17 +225,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1750699585,
-        "narHash": "sha256-R9o5bU9mVHCLcxhCv5jTz334CVG9D/9rWdeFVGVVR1Q=",
-        "ref": "refs/heads/main",
-        "rev": "34039a45799819e6afa169746abc903e165c620f",
-        "revCount": 4,
-        "type": "git",
-        "url": "https://git.gay/QueerResourcesRiga/gancio-plugin-discord"
+        "lastModified": 1764620194,
+        "narHash": "sha256-u7RevACvOP/E/WGFV3RpjkE/9YY4vBgpjjnUXXlAZEY=",
+        "owner": "arc2-group",
+        "repo": "gancio-plugin-discord",
+        "rev": "0782a30e5532c2adf8bb7dc3a169a0dfa26d0e02",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.gay/QueerResourcesRiga/gancio-plugin-discord"
+        "owner": "arc2-group",
+        "ref": "dev",
+        "repo": "gancio-plugin-discord",
+        "type": "github"
       }
     },
     "gitignore": {

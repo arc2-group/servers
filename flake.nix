@@ -35,7 +35,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     gancio-plugin-discord = {
-      url = "git+https://git.gay/QueerResourcesRiga/gancio-plugin-discord";
+      url = "github:arc2-group/gancio-plugin-discord/dev";
       inputs.nixpkgs.follows = "nixpkgs_latest";
       inputs.flake-utils.follows = "flake-utils";
     };
