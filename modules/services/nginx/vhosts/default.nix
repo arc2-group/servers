@@ -6,7 +6,6 @@
     ./grafana.nix
     ./matrix.nix
     ./media.nix
-    ./prometheus.nix
     ./pve.nix
     ./qrp.nix
     ./uptimekuma.nix
