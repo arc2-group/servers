@@ -12,8 +12,8 @@
       inputs.gancio-plugin-discord.packages.${platform}.default
     ];
     settings = {
-      hostname = "pasakumi.kviriem.lv";
-      baseurl = "https://pasakumi.kviriem.lv"; # manually set https because enableACME = false
+      hostname = "kviriem.lv";
+      baseurl = "https://kviriem.lv"; # manually set https because enableACME = false
     };
 
     nginx = {
