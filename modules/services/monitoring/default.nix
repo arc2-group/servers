@@ -3,5 +3,6 @@ _: {
     ./grafana
     ./loki
     ./prometheus
+    ./uptimekuma
   ];
 }

@@ -9,6 +9,7 @@
     ./prometheus.nix
     ./pve.nix
     ./qrp.nix
+    ./uptimekuma.nix
     ./vaultwarden.nix
 
     # external
