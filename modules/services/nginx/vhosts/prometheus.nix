@@ -13,6 +13,7 @@ in
       };
 
       extraConfig = ''
+        ssl_verify_client on;
         if ($ssl_client_verify != SUCCESS) {
           return 403;
         }

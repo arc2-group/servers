@@ -2,19 +2,20 @@
 {
   services.nginx.virtualHosts =
     let
-      base = locations: {
-        inherit locations;
-
-        forceSSL = true;
-        enableACME = true;
-      };
       proxy =
         {
           port,
           verifyCert ? true,
         }:
-        base {
-          "/" = {
+        {
+          forceSSL = true;
+          enableACME = true;
+
+          extraConfig = lib.mkIf verifyCert ''
+            ssl_verify_client on;
+          '';
+
+          locations."/" = {
             proxyPass = "http://vm-public-media:" + toString port;
             extraConfig = lib.mkIf verifyCert ''
               if ($ssl_client_verify != SUCCESS) {

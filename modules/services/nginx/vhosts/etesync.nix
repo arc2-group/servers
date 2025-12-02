@@ -12,6 +12,10 @@ in
         proxyPass = "http://vm-public-cloud:${toString port}";
       };
 
+      extraConfig = ''
+        ssl_verify_client optional;
+      '';
+
       locations."/admin/" = {
         proxyPass = "http://vm-public-cloud:${toString port}";
 

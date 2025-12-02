@@ -13,6 +13,10 @@ in
         inherit proxyPass;
       };
 
+      extraConfig = ''
+        ssl_verify_client optional;
+      '';
+
       locations."/admin/" = {
         inherit proxyPass;
 
