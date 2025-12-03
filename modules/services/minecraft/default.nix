@@ -1,6 +1,9 @@
 { inputs, pkgs, ... }:
 {
-  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
+  imports = [
+    inputs.nix-minecraft.nixosModules.minecraft-servers
+    ./logs
+  ];
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
 
   services.minecraft-servers = {
