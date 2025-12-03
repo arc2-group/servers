@@ -49,5 +49,8 @@ in
   "modules/services/vaultwarden/config.env.age".publicKeys = admins ++ [
     s.vm-public-cloud
   ];
+  "modules/services/nginx/geoip/license.age".publicKeys = admins ++ [
+    s.vm-public-ingress
+  ];
 }
 // secrets
