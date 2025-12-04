@@ -47,6 +47,11 @@ in
         job_name = "nginx";
         static_configs = [ { targets = [ "vm-public-ingress:9113" ]; } ];
       }
+      {
+        job_name = "minecraft";
+        static_configs = [ { targets = [ "vm-public-qminecraft:25585" ]; } ];
+        scrape_interval = "10s";
+      }
     ];
   };
 }
