@@ -108,6 +108,10 @@
                 url = "https://cdn.modrinth.com/data/l6YH9Als/versions/eqIoLvsF/spark-1.10.152-fabric.jar";
                 hash = "sha256-Ul2oR/N2zraVvPGxWs8YbHWQu1fiBt+a9CEIUnpP/Z4=";
               };
+              FabricExporter = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/dbVXHSlv/versions/OT2QwJUv/fabricexporter-1.0.19.jar";
+                hash = "sha256-q+wuL79x2XnMlowm3elVzOFQ585h4U+8/c5Jo7ETFw4=";
+              };
               # Map
               BlueMap = pkgs.fetchurl {
                 url = "https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v5.13/bluemap-5.13-fabric.jar";
@@ -131,6 +135,7 @@
     allowedTCPPorts = [
       35585 # Minecraft
       8100 # BlueMap
+      25585 # Prometheus exporter
     ];
     allowedUDPPorts = [ 35585 ]; # Bedrock
   };
