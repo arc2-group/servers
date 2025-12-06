@@ -114,6 +114,11 @@
                 url = "https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v5.13/bluemap-5.13-fabric.jar";
                 hash = "sha256-VO2zE+cHkZGZ0O1Rf/OUZnO0sh1PAKH+HzH6ApTFMoo=";
               };
+              # Voice Chat
+              SimpleVoiceChat = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/BjR2lc4k/voicechat-fabric-1.21.10-2.6.6.jar";
+                hash = "sha256-yC5pMBLsi4BnUq4CxTfwe4MGTqoBg04ZaRrsBC3Ds3Y=";
+              };
             }
           );
         };
@@ -134,7 +139,10 @@
       8100 # BlueMap
       25585 # Prometheus exporter
     ];
-    allowedUDPPorts = [ 35585 ]; # Bedrock
+    allowedUDPPorts = [
+      35585 # Bedrock
+      24454 # Simple Voice Chat
+    ];
   };
 
   allowed-unfree = [ "minecraft-server" ];
