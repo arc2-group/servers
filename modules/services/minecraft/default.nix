@@ -66,10 +66,6 @@
                 url = "https://cdn.modrinth.com/data/LVN9ygNV/versions/O4Rna8OX/ledger-1.3.16.jar";
                 hash = "sha256-7fw94C87iu/0T+knZqeYGr+9lNPNZX/Af1xTWrQcru0=";
               };
-              GrimAC = pkgs.fetchurl {
-                url = "https://cdn.modrinth.com/data/LJNGWSvH/versions/7yXLPvDc/grimac-fabric-2.3.73-c2c044f.jar";
-                hash = "sha256-HLuiZv6foxY2XDaiME2hPM3Q+iex0ZsMeP+XPzLcA/E=";
-              };
               SneakyServer = pkgs.fetchurl {
                 url = "https://cdn.modrinth.com/data/HRXgZcrv/versions/tQ1XxByg/sneaky-mc1.21.10-1.0.19.jar";
                 hash = "sha256-imtDLRquqtwzn00pYN2Iwfjtt+WS7LWeHZnGA4Ws6Do=";
@@ -122,7 +118,6 @@
           );
         };
         files = {
-          "config/GrimAC/config.yml" = ./config/GrimAC/config.yml;
           "config/Geyser-Fabric/config.yml" = ./config/Geyser-Fabric/config.yml;
           "config/EasyAuth" = ./config/EasyAuth;
           "config/bluemap" = ./config/bluemap;
