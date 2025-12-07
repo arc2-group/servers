@@ -19,7 +19,7 @@
           enable-code-of-conduct = true;
           enforce-secure-profile = false;
           hide-online-players = true;
-          motd = "A§4 lo§fc§4al §bq§du§fe§de§br §4M§ci§6n§ee§ac§3r§ba§9f§1t §ew§fo§9r§8ld";
+          motd = "A§4 lo§fc§4al §bq§du§fe§de§br §4M§ci§6n§ee§ac§3r§ba§9f§1t §ew§fo§9r§8ld\\n§fnow with the §d§oSimple Voice Chat§f mod";
           level-seed = "-8021755361276700313";
           spawn-protection = 0;
           server-port = 35585;
