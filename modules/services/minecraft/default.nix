@@ -133,7 +133,7 @@
           "config/bluemap" = ./config/bluemap;
           "codeofconduct" = ./codeofconduct;
         };
-        jvmOpts = "-Xms4096M -Xmx6144M";
+        jvmOpts = "-Xms4096M -Xmx10240M";
       };
     };
   };
