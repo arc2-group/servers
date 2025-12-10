@@ -93,8 +93,8 @@
               };
               # Protocol
               Geyser = pkgs.fetchurl {
-                url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/WRvXSuOz/geyser-fabric-Geyser-Fabric-2.9.1-b999.jar";
-                hash = "sha256-Ut1H+NI34jNjkCWS7LPgPVK1gv/WO9dWgP7kthkWVN0=";
+                url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/Tyrnrthu/geyser-fabric-Geyser-Fabric-2.9.1-b1002.jar";
+                hash = "sha256-GUxanh1zWZcgKKQmy8ej6OHnu4jONn+j1s39uEdolT0=";
               };
               Floodgate = pkgs.fetchurl {
                 url = "https://cdn.modrinth.com/data/bWrNNfkb/versions/QFAMeMNB/Floodgate-Fabric-2.2.6-b51.jar";
