@@ -29,6 +29,7 @@ in
     enable = true;
     listenAddress = "[::1]";
     port = 9090;
+    retentionTime = "31d";
 
     scrapeConfigs = [
       {
