@@ -51,6 +51,7 @@
       limits_config = {
         reject_old_samples = true;
         reject_old_samples_max_age = "168h";
+        max_query_series = 100000;
       };
 
       table_manager = {
