@@ -6,6 +6,7 @@
         {
           port,
           verifyCert ? true,
+          rootExtraConfig ? "",
         }:
         {
           forceSSL = true;
@@ -17,14 +18,17 @@
 
           locations."/" = {
             proxyPass = "http://vm-public-media:" + toString port;
-            extraConfig = lib.mkIf verifyCert ''
-              if ($ssl_client_verify != SUCCESS) {
-                return 403;
-              }
-              if ($permissions !~ "admin") {
-                return 403;
-              }
-            '';
+            extraConfig = lib.mkMerge [
+              rootExtraConfig
+              (lib.mkIf verifyCert ''
+                if ($ssl_client_verify != SUCCESS) {
+                  return 403;
+                }
+                if ($permissions !~ "admin") {
+                  return 403;
+                }
+              '')
+            ];
           };
         };
     in
@@ -34,14 +38,12 @@
           (proxy {
             port = 18096;
             verifyCert = false;
+            rootExtraConfig = ''
+              proxy_buffering off;
+            '';
           })
           {
             locations = {
-              "/" = {
-                extraConfig = ''
-                  proxy_buffering off;
-                '';
-              };
               "/socket" = {
                 inherit (config.services.nginx.virtualHosts."media.blazma.st".locations."/") proxyPass;
                 proxyWebsockets = true;
@@ -55,7 +57,20 @@
       }; # Navidrome
 
       "transmission.blazma.st" = proxy { port = 19091; };
-      "slskd.blazma.st" = proxy { port = 15030; };
+      "slskd.blazma.st" =
+        lib.attrsets.recursiveUpdate
+          (proxy {
+            port = 15030;
+            rootExtraConfig = ''
+              proxy_read_timeout 86400s;
+              proxy_send_timeout 86400s;
+            '';
+          })
+          {
+            locations."/" = {
+              proxyWebsockets = true;
+            };
+          };
 
       "bazarr.blazma.st" = proxy { port = 6767; };
       "lidarr.blazma.st" = proxy { port = 8686; };
