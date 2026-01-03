@@ -3,6 +3,7 @@
   services = {
     nginx = {
       enable = true;
+      enableReload = true;
 
       additionalModules = [
         pkgs.nginxModules.geoip2
