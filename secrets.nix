@@ -1,7 +1,5 @@
 let
   admins = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGk2s3Q7/djy4ytAQUBpVuo+97yQz9p4tzREX+vujoy"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiiNmXma1IijIE6U6CKsGcmfGf0gqSZ5S0fvZABv+tA"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpmdkxAZH3See4FaPgiZoTxpcEC1orOGB9cXoQtYUYI"
     s.vm-admin
   ];
