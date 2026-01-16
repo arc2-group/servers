@@ -5,11 +5,11 @@ let
       pkgs.fetchFromGitHub {
         owner = "arc2-group";
         repo = "qminecraft-modpack";
-        rev = "3977471bdedafb1b25526bdb14143ee4c0a49ea5";
-        hash = "sha256-ArbPUjPZTj/5j32V1HWvysrqGQSs+72tPWR+WEA1PQ8=";
+        rev = "39cd2d4b06e7713d7cfdbfa3419e2e1d35d4b939";
+        hash = "sha256-gauwsy3+8yCBOuHUgBQ31fOsk/atjCmfI0iXgQ6H30E=";
       }
       + /src;
-    packHash = "sha256-XZ9iM+k1g1paCQIA5hisx00AOGNN50km1JjHEvAf8wc=";
+    packHash = "sha256-1r+VT+OSDq6g/swBOt9Lk73kZa27GXQRSRs/q1r4saU=";
   };
 in
 {
