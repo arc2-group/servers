@@ -9,6 +9,8 @@ _: {
     "fd5e:934f:acab:1::6007" = [ "vm-public-qrp" ];
     "fd5e:934f:acab:1::6009" = [ "vm-public-qminecraft" ];
 
+    "fd5e:934f:acab:1::7002" = [ "vm-truenas" ];
+
     "fd5e:934f:acab:2::8001" = [ "ext-ltvg" ];
   };
 }

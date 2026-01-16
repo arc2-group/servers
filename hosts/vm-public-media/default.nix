@@ -5,11 +5,11 @@ args: {
     ../../modules/services/slskd
     ../../modules/services/tor-socks
 
-    (import ../../modules/disks/data.nix (
+    (import ../../modules/disks/nfs.nix (
       args
       // {
         mountpoint = "/media";
-        device = "/dev/disk/by-path/pci-0000:01:02.0-scsi-0:0:0:1";
+        remotePath = "/mnt/home/arc2/media";
       }
     )) # media
 
