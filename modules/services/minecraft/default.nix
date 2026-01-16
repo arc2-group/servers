@@ -1,13 +1,15 @@
 { inputs, pkgs, ... }:
 let
   modpack = pkgs.fetchPackwizModpack {
-    src = pkgs.fetchFromGitHub {
-      owner = "arc2-group";
-      repo = "qminecraft-modpack";
-      rev = "edcb033f63ac13bfa972339270c75a5d18efcda9";
-      hash = "sha256-sopWFrF8pr1E0I1n4Mkb3f1W0uV+O3pcFdf31vERGr8=";
-    };
-    packHash = "sha256-MJ3gUtyjNIUeQwgEPCO/0OAoPaxxwt1Gnjvlb6nZ4sY=";
+    src =
+      pkgs.fetchFromGitHub {
+        owner = "arc2-group";
+        repo = "qminecraft-modpack";
+        rev = "280a0a42647747fe0d28a38ec0c8748ca7efd1c2";
+        hash = "sha256-j0Sh9+fHhrQtoenpZzDKm0LxI9zG3MxEyirEkTT50DU=";
+      }
+      + /src;
+    packHash = "sha256-dj+QX8/g62MzWwp+IjL2AQnutSKlvkWCiUvTpWewyfI=";
   };
 in
 {
