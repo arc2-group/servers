@@ -1,0 +1,11 @@
+[OPTIONS]
+
+policy_in: DROP
+enable: 1
+log_level_in: nolog
+
+[RULES]
+
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 3000 -log nolog # Sharkey
+
+GROUP gp-vm

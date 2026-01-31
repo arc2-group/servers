@@ -9,6 +9,7 @@
     ./pve.nix
     ./qminecraft.nix
     ./qrp.nix
+    ./sharkey.nix
     ./uptimekuma.nix
     ./vaultwarden.nix
 
