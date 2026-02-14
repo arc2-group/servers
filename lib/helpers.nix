@@ -15,6 +15,11 @@
     let
       isISO = builtins.substring 0 3 hostname == "iso";
       isInstall = !isISO;
+
+      unstable = import inputs.nixpkgs_unstable {
+        system = platform;
+      };
+
     in
     inputs.nixpkgs_latest.lib.nixosSystem {
       specialArgs = {
@@ -28,6 +33,7 @@
           isISO
           isInstall
           vms
+          unstable
           ;
       };
       modules = [

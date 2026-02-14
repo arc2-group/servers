@@ -1,10 +1,16 @@
-{ hostname, config, ... }:
+{
+  hostname,
+  config,
+  unstable,
+  ...
+}:
 let
   secrets = "${hostname}-navidrome-secrets";
 in
 {
   services.navidrome = {
     enable = true;
+    package = unstable.navidrome;
     openFirewall = true;
     group = "media";
     settings = {
