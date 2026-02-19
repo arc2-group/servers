@@ -14,6 +14,7 @@
     settings = {
       hostname = "kviriem.lv";
       baseurl = "https://kviriem.lv"; # manually set https because enableACME = false
+      user_locale = "/opt/gancio/user_locale";
     };
 
     nginx = {
