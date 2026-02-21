@@ -50,7 +50,15 @@ in
       }
       {
         job_name = "minecraft";
-        static_configs = [ { targets = [ "vm-public-qminecraft:25585" ]; } ];
+        static_configs = [
+          {
+            targets = [ "kviriem.falixsrv.me:20008" ];
+            labels = {
+              # set instance label to previous target for historic data
+              instance = "vm-public-qminecraft:25585";
+            };
+          }
+        ];
         scrape_interval = "10s";
       }
     ];
