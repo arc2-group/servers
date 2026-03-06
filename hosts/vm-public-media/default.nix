@@ -24,4 +24,22 @@ args: {
 
   # add coil user to media group
   users.users.coil.extraGroups = [ "media" ];
+
+  # add media.mount as a requirement for media services
+  systemd.automounts = [
+    {
+      requiredBy = [
+        "navidrome.service"
+        "bazaar.service"
+        "lidarr.service"
+        "radarr.service"
+        "readarr.service"
+        "sonarr.service"
+        "transmission.service"
+        "slskd.service"
+      ];
+      where = "/media";
+    }
+  ];
+
 }
