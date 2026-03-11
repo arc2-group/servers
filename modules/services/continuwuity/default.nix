@@ -1,13 +1,8 @@
 {
-  config,
-  hostname,
   inputs,
   platform,
   ...
 }:
-let
-  registration-token = "${hostname}-registration-token";
-in
 {
   imports = [
     ./bridges
@@ -31,7 +26,6 @@ in
 
       log = "debug";
       default_room_version = "11";
-      registration_token_file = config.age.secrets.${registration-token}.path;
       well_known = {
         client = "https://matrix.blazma.st";
         server = "matrix.blazma.st:443";
@@ -39,12 +33,6 @@ in
         support_email = "admin+matrix@blazma.st";
       };
     };
-  };
-
-  age.secrets.${registration-token} = {
-    file = ./registration-token.age;
-    owner = config.services.matrix-continuwuity.user;
-    inherit (config.services.matrix-continuwuity) group;
   };
 
   networking.firewall = {
