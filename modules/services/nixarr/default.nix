@@ -14,6 +14,11 @@
     mediaDir = "/media";
     stateDir = "/var";
 
+    audiobookshelf = {
+      enable = true;
+      host = "::";
+      openFirewall = true;
+    };
     jellyfin.enable = true;
 
     transmission = {

@@ -49,12 +49,20 @@
                 proxyWebsockets = true;
               };
             };
-          }; # Navidrome; # Jellyfin
+          }; # Jellyfin
 
       "music.blazma.st" = proxy {
         port = 4533;
         verifyCert = false;
       }; # Navidrome
+
+      "audiobook.blazma.st" = lib.attrsets.recursiveUpdate (proxy {
+        port = 9292;
+        verifyCert = false;
+        rootExtraConfig = ''
+          proxy_buffering off;
+        '';
+      }) { }; # audiobookshelf
 
       "transmission.blazma.st" = proxy { port = 19091; };
       "slskd.blazma.st" =
