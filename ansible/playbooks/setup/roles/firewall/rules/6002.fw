@@ -10,10 +10,10 @@ IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 18096 -log nolog # Jellyfin
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 19091 -log nolog # Transmission Web UI
 IN ACCEPT -p tcp -dport 34789 -log nolog # Transmission BitTorrent TCP
 IN ACCEPT -p udp -dport 34789 -log nolog # Transmission BitTorrent UDP
-IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 6767 -log nolog # Bazaar
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 9292 -log nolog # Audiobookshelf
+IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 7878 -log nolog # Radarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8686 -log nolog # Lidarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 9696 -log nolog # Prowlarr
-IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 7878 -log nolog # Radarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8787 -log nolog # Readarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 8989 -log nolog # Sonarr
 IN ACCEPT -source dc/vm-public-ingress -p tcp -dport 4533 -log nolog # Navidrome
