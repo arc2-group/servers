@@ -56,13 +56,23 @@
         verifyCert = false;
       }; # Navidrome
 
-      "audiobook.blazma.st" = lib.attrsets.recursiveUpdate (proxy {
-        port = 9292;
-        verifyCert = false;
-        rootExtraConfig = ''
-          proxy_buffering off;
-        '';
-      }) { }; # audiobookshelf
+      "audiobook.blazma.st" =
+        lib.attrsets.recursiveUpdate
+          (proxy {
+            port = 9292;
+            verifyCert = false;
+            rootExtraConfig = ''
+              proxy_buffering off;
+            '';
+          })
+          {
+            locations = {
+              "/audiobookshelf/socket.io" = {
+                inherit (config.services.nginx.virtualHosts."audiobook.blazma.st".locations."/") proxyPass;
+                proxyWebsockets = true;
+              };
+            };
+          }; # audiobookshelf
 
       "transmission.blazma.st" = proxy { port = 19091; };
       "slskd.blazma.st" =
