@@ -63,6 +63,7 @@
             verifyCert = false;
             rootExtraConfig = ''
               proxy_buffering off;
+              client_max_body_size 4000m;
             '';
           })
           {
