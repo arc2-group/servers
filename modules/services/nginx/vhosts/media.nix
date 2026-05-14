@@ -84,7 +84,6 @@
       "lidarr.blazma.st" = proxy { port = 8686; };
       "prowlarr.blazma.st" = proxy { port = 9696; };
       "radarr.blazma.st" = proxy { port = 7878; };
-      "readarr.blazma.st" = proxy { port = 8787; };
       "sonarr.blazma.st" = proxy { port = 8989; };
     };
 }
