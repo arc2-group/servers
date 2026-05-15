@@ -259,15 +259,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1770796282,
-        "narHash": "sha256-xQxSqf7+41wP0GM+9xVALfP7o/2XmYxfR1G0EAeq1lI=",
-        "ref": "refs/heads/main",
-        "rev": "9f5fb0c8597cd7a7a011449f1821cf2d0d2dac4e",
-        "revCount": 10,
+        "lastModified": 1778863206,
+        "narHash": "sha256-WwoBqcZhaQnLjKZQKloPMYYczQNaHDYbNs1Zw0g6JNg=",
+        "ref": "v2",
+        "rev": "9e3b1e2e6241f3d11ac3a9a794548b6aceabfa6e",
+        "revCount": 22,
         "type": "git",
         "url": "https://git.gay/QueerResourcesRiga/gancio-plugin-discord"
       },
       "original": {
+        "ref": "v2",
         "type": "git",
         "url": "https://git.gay/QueerResourcesRiga/gancio-plugin-discord"
       }
