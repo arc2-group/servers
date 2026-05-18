@@ -72,6 +72,11 @@
       18096 # Jellyfin
       19091 # slskd Web UI
       34789 # Transmission BitTorrent
+      7878 # Radarr
+      8989 # Sonarr
+      6767 # Bazarr
+      9696 # Prowlarr
+      8686 # Lidarr
     ];
   };
 }
