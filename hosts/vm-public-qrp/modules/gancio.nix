@@ -7,8 +7,9 @@
 {
   services.gancio = {
     enable = true;
+
     plugins = [
-      pkgs.gancioPlugins.telegram-bridge
+      (pkgs.gancioPlugins.telegram-bridge.overrideAttrs (_: _: { patches = [ ./0001.patch ]; }))
       inputs.gancio-plugin-discord.packages.${platform}.default
     ];
     settings = {
