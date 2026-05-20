@@ -1,0 +1,61 @@
+From 6dd69752ef1154c32afafbccc381f6c7409ffd68 Mon Sep 17 00:00:00 2001
+From: WhoDis2372 <uneasy-glade-flip@duck.com>
+Date: Wed, 20 May 2026 11:01:16 +0300
+Subject: [PATCH] change default image and add utm_source
+
+---
+ index.js | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/index.js b/index.js
+index 1064cff..51855bb 100644
+--- a/index.js
++++ b/index.js
+@@ -82,7 +82,7 @@ const plugin = {
+     if (( !event.is_visible ) || ( (!plugin.settings.send_recurrent_event) && event.recurrent) ) {
+         return
+     }
+-    let image_url = `${plugin.gancio.settings.baseurl}/logo.png`;
++    let image_url = `${plugin.gancio.settings.baseurl}/media/kviriem_dark_web.png`;
+     if (event.media && event.media.length) {
+       image_url = `${plugin.gancio.settings.baseurl}/media/${event.media[0].url}`
+     }
+@@ -237,7 +237,7 @@ function rmFormat(html) {
+ function renderPlace(place) {
+     plugin.log.debug(`Rendering place ${place}`);
+     let prefix = `📌${NBSP}`
+-    let infix = `<a href="${plugin.gancio.settings.baseurl}/place/${place.name}">${place.name}</a>`
++    let infix = `<a href="${plugin.gancio.settings.baseurl}/place/${place.name}?utm_source=tg">${place.name}</a>`
+     let sufix = ""
+ 
+     if (place.longitude && place.latitude) {
+@@ -266,7 +266,7 @@ function renderEventTitle(event) {
+ 
+     plugin.log.debug(`Rendering event title ${event.slug} = ${event.title}`);
+     // I think this makes sense, but linking could be optional
+-    let eventLink = `${plugin.gancio.settings.baseurl}/event/${event.slug}`
++    let eventLink = `${plugin.gancio.settings.baseurl}/event/${event.slug}?utm_source=tg`
+     if (eventLink.includes("localhost")) {
+         plugin.log.warn("Replacing title link with gancio's website, as telegram removes links pointing to private URL")
+         eventLink = "https://gancio.org"
+@@ -317,7 +317,7 @@ function renderEventTag(tag, withLink) {
+     plugin.log.debug(`Rendering event tag ${tag}`);
+     const tagText = tag.tag.replaceAll(" ", "_");
+     if(withLink)
+-        return `<a href="${plugin.gancio.settings.baseurl}/tag/${tag.tag}">#${tagText}</a>`
++        return `<a href="${plugin.gancio.settings.baseurl}/tag/${tag.tag}?utm_source=tg">#${tagText}</a>`
+     else
+         return `#${tagText}`
+ }
+@@ -334,7 +334,7 @@ function renderGancioSite(enabled) {
+     if (! enabled)
+         return "";
+     plugin.log.debug(`Rendering gancio site ${plugin.gancio.settings.baseurl} = ${plugin.gancio.settings.title}`);
+-    return `\n👉${NBSP}<a href="${plugin.gancio.settings.baseurl}">${plugin.gancio.settings.title}</a>`
++    return `\n👉${NBSP}<a href="${plugin.gancio.settings.baseurl}?utm_source=tg">${plugin.gancio.settings.title}</a>`
+ }
+ 
+ function renderEvent(event) {
+-- 
+2.51.2
+
