@@ -11,6 +11,7 @@
     ./sharkey.nix
     ./uptimekuma.nix
     ./vaultwarden.nix
+    ./owntracks.nix
 
     # external
     ./ltvg.nix
