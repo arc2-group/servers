@@ -7,7 +7,6 @@ _: {
     "fd5e:934f:acab:1::6005" = [ "vm-public-matrix" ];
     "fd5e:934f:acab:1::6006" = [ "vm-monitoring" ];
     "fd5e:934f:acab:1::6007" = [ "vm-public-qrp" ];
-    "fd5e:934f:acab:1::6009" = [ "vm-public-qminecraft" ];
     "fd5e:934f:acab:1::6008" = [ "vm-public-social" ];
 
     "fd5e:934f:acab:1::7002" = [ "vm-truenas" ];

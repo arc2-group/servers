@@ -39,12 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs_latest";
       inputs.flake-utils.follows = "flake-utils";
     };
-
-    nix-minecraft = {
-      url = "github:Infinidoge/nix-minecraft";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs_unstable";
-    };
   };
 
   nixConfig = {
