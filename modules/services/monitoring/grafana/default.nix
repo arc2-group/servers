@@ -16,6 +16,7 @@ in
         admin_user = "Encroach1342";
         admin_password = "$__file{${config.age.secrets.${admin-password}.path}}";
         #cookie_secure = true;
+        secret_key = "SW2YcwTIb9zpOOhoPsMm"; # nixpkgs 25.11 hard coded key. security is not essential here.
       };
     };
     provision.datasources.settings.datasources = [
